@@ -1,0 +1,1203 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>第01章: Python基础 &#8212; My sample book</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第14章: 线性方程组求解" href="mc_numerics_ch14-Linear-System-of-Equations.html" />
+    <link rel="prev" title="数值计算方法 - Python实现" href="mc_numerics_ch00_index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">My sample book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="mc_numerics_ch00_index.html">
+   <center>
+    数值计算方法 - Python实现
+   </center>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <center>
+    第01章: Python基础
+   </center>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mc_numerics_ch14-Linear-System-of-Equations.html">
+   <center>
+    第14章: 线性方程组求解
+   </center>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mc_numerics_ch19-Roots-of-Nonlinear-Equations.html">
+   <center>
+    第19章: 非线性方程求根
+   </center>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/mc_numerics_ch01-Python-Basics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmc_numerics_ch01-Python-Basics.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/mc_numerics_ch01-Python-Basics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-getting-started-with-python">
+   搭建Python开发环境(Getting Started with Python)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     确定你的系统
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     Python开发环境的搭建方法
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anacondapython">
+     基于Anaconda搭建Python开发环境
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   Python作为简单的计算器
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-data-types">
+     Basic Data Types
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pythonpackage">
+   管理Python的package
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#managing-packages-using-package-managers">
+     Managing packages using package managers
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#install-a-package">
+       Install a package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#upgrade-a-package">
+       Upgrade a package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#uninstall-a-package">
+       Uninstall a package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#other-useful-commands">
+       Other useful commands
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-packages-from-source">
+     Install packages from source
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-notebook">
+   Jupyter Notebook简介
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-jupyter-notebook">
+     Start Jupyter notebook
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#within-the-notebook">
+     Within the notebook
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shut-down-the-jupyter-notebook">
+     Shut down the Jupyter notebook
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#close-a-notebook">
+     Close a notebook
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   Python逻辑表达式和操作算子
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   小结
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     本章简单小节
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     思考题？
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><center> 第01章: Python基础</center></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-getting-started-with-python">
+   搭建Python开发环境(Getting Started with Python)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     确定你的系统
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     Python开发环境的搭建方法
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anacondapython">
+     基于Anaconda搭建Python开发环境
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   Python作为简单的计算器
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-data-types">
+     Basic Data Types
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pythonpackage">
+   管理Python的package
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#managing-packages-using-package-managers">
+     Managing packages using package managers
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#install-a-package">
+       Install a package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#upgrade-a-package">
+       Upgrade a package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#uninstall-a-package">
+       Uninstall a package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#other-useful-commands">
+       Other useful commands
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-packages-from-source">
+     Install packages from source
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-notebook">
+   Jupyter Notebook简介
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-jupyter-notebook">
+     Start Jupyter notebook
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#within-the-notebook">
+     Within the notebook
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shut-down-the-jupyter-notebook">
+     Shut down the Jupyter notebook
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#close-a-notebook">
+     Close a notebook
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   Python逻辑表达式和操作算子
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   小结
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     本章简单小节
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     思考题？
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="center-01-python-center">
+<h1><center> 第01章: Python基础</center><a class="headerlink" href="#center-01-python-center" title="Permalink to this headline">¶</a></h1>
+<center>（Chapter 01: Python Basics）</center><h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#搭建Python开发环境(Getting-Started-with-Python)" data-toc-modified-id="搭建Python开发环境(Getting-Started-with-Python)-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>搭建Python开发环境(Getting Started with Python)</a></span><ul class="toc-item"><li><span><a href="#确定你的系统" data-toc-modified-id="确定你的系统-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>确定你的系统</a></span></li><li><span><a href="#Python开发环境的搭建方法" data-toc-modified-id="Python开发环境的搭建方法-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>Python开发环境的搭建方法</a></span></li><li><span><a href="#基于Anaconda搭建Python开发环境" data-toc-modified-id="基于Anaconda搭建Python开发环境-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>基于Anaconda搭建Python开发环境</a></span></li></ul></li><li><span><a href="#Python作为简单的计算器" data-toc-modified-id="Python作为简单的计算器-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Python作为简单的计算器</a></span><ul class="toc-item"><li><span><a href="#Basic-Data-Types" data-toc-modified-id="Basic-Data-Types-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>Basic Data Types</a></span></li></ul></li><li><span><a href="#管理Python的package" data-toc-modified-id="管理Python的package-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>管理Python的package</a></span><ul class="toc-item"><li><span><a href="#Managing-packages-using-package-managers" data-toc-modified-id="Managing-packages-using-package-managers-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span>Managing packages using package managers</a></span><ul class="toc-item"><li><span><a href="#Install-a-package" data-toc-modified-id="Install-a-package-3.1.1"><span class="toc-item-num">3.1.1&nbsp;&nbsp;</span>Install a package</a></span></li><li><span><a href="#Upgrade-a-package" data-toc-modified-id="Upgrade-a-package-3.1.2"><span class="toc-item-num">3.1.2&nbsp;&nbsp;</span>Upgrade a package</a></span></li><li><span><a href="#Uninstall-a-package" data-toc-modified-id="Uninstall-a-package-3.1.3"><span class="toc-item-num">3.1.3&nbsp;&nbsp;</span>Uninstall a package</a></span></li><li><span><a href="#Other-useful-commands" data-toc-modified-id="Other-useful-commands-3.1.4"><span class="toc-item-num">3.1.4&nbsp;&nbsp;</span>Other useful commands</a></span></li></ul></li><li><span><a href="#Install-packages-from-source" data-toc-modified-id="Install-packages-from-source-3.2"><span class="toc-item-num">3.2&nbsp;&nbsp;</span>Install packages from source</a></span></li></ul></li><li><span><a href="#Jupyter-Notebook简介" data-toc-modified-id="Jupyter-Notebook简介-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Jupyter Notebook简介</a></span><ul class="toc-item"><li><span><a href="#Start-Jupyter-notebook" data-toc-modified-id="Start-Jupyter-notebook-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>Start Jupyter notebook</a></span></li><li><span><a href="#Within-the-notebook" data-toc-modified-id="Within-the-notebook-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>Within the notebook</a></span></li><li><span><a href="#Shut-down-the-Jupyter-notebook" data-toc-modified-id="Shut-down-the-Jupyter-notebook-4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span>Shut down the Jupyter notebook</a></span></li><li><span><a href="#Close-a-notebook" data-toc-modified-id="Close-a-notebook-4.4"><span class="toc-item-num">4.4&nbsp;&nbsp;</span>Close a notebook</a></span></li></ul></li><li><span><a href="#Python逻辑表达式和操作算子" data-toc-modified-id="Python逻辑表达式和操作算子-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Python逻辑表达式和操作算子</a></span></li><li><span><a href="#小结" data-toc-modified-id="小结-6"><span class="toc-item-num">6&nbsp;&nbsp;</span>小结</a></span><ul class="toc-item"><li><span><a href="#本章简单小节" data-toc-modified-id="本章简单小节-6.1"><span class="toc-item-num">6.1&nbsp;&nbsp;</span>本章简单小节</a></span></li><li><span><a href="#思考题？" data-toc-modified-id="思考题？-6.2"><span class="toc-item-num">6.2&nbsp;&nbsp;</span>思考题？</a></span></li></ul></li></ul></div><div class="section" id="python-getting-started-with-python">
+<h2>搭建Python开发环境(Getting Started with Python)<a class="headerlink" href="#python-getting-started-with-python" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>确定你的系统<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>经过多年的发展，计算机的系统主要分为三大类：</p>
+<ul class="simple">
+<li><p>Windows是目前最常用的操作系统。尽管有多个版本，但目前的常见版本序列是Windows xp，Windows 7， Windows 10， Windows 11.</p></li>
+<li><p>Linux作为开源系统的代表，其实是一个很小的内核代码。基于此有很多的发型版本，包括Ubuntu，Debian等。常见的个人用Linux系统的发型版本为Ubuntu。</p></li>
+<li><p>MacOS是苹果公司Mac系列电脑所用的操作系统，本质上是基于Unix的一种操作系统，其主要的命令行操作流程与Linux类似，但操作界面和资源组织方式与其他两种操作系统不一样。</p></li>
+</ul>
+<p>Python的开发环境与操作系统紧密关联，在搭建Python开发环境时一定要先确定好所使用的系统版本。</p>
+</div>
+<div class="section" id="python">
+<h3>Python开发环境的搭建方法<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<p>python开发环境主要包括以下两点：</p>
+<ul class="simple">
+<li><p>python核心文件（官网可下载）+ 常用的python包（主要由不同的开发群体维护和提供下载）</p></li>
+<li><p>集成化的代码编辑、调试、执行和可视化工具。</p></li>
+</ul>
+<p>原则上，总共有三种Python开发环境的安装和搭建方法。</p>
+<ol class="simple">
+<li><p><strong>从零开始，私人订制</strong>：</p>
+<ul class="simple">
+<li><p>安装python运行环境 （python core）：包含python语言解释器，python运行的基础库和python交互运行工具python shell</p></li>
+<li><p>在系统上设置python的环境变量 （environment variables）以便于命令行使用</p></li>
+<li><p>安装python IDE或者python代码编辑器+编译插件 （python IDE or python editor plus plugins）</p></li>
+<li><p>使用python下的pip命令安装python包 （packages via pip）</p></li>
+<li><p>选择并安装对应的代码编辑、调试、执行和可视化工具 （python file editor, debugger and runner）</p></li>
+</ul>
+</li>
+<li><p><strong>因地制宜，节省时间</strong>：</p>
+<ul class="simple">
+<li><p>根据系统选择对应的软件包管理工具：Windows的Chocolatey，Linux的apt、yum、dnf和pkg，Mac OS的MacPorts和HomeBrew</p></li>
+<li><p>利用软件包管理工具安装python：</p>
+<ul>
+<li><p>Windows：choco install python</p></li>
+<li><p>Linux： sudo apt-get install python</p></li>
+<li><p>Mac OS：brew install python 或者 port install python</p></li>
+</ul>
+</li>
+<li><p>利用python语言的包管理工具pip安装对应的软件包</p></li>
+<li><p>根据个人喜好选择python的editor+extension或者IDE：</p>
+<ul>
+<li><p>Editor -&gt; Visual Studio Code (All OSs)</p></li>
+<li><p>Editor -&gt; Sublime Text  (All OSs)</p></li>
+<li><p>Editor -&gt; Atom   (All OSs)</p></li>
+<li><p>Editor -&gt; Vim/NeoVim   (All OSs)</p></li>
+<li><p>Editor -&gt; GNU Emacs   (All OSs)</p></li>
+<li><p>Editor -&gt; TextMate  (Mac OS only)</p></li>
+<li><p>IDE  -&gt;  IDLE (official simple ide)</p></li>
+<li><p>IDE  -&gt;  Jupyer Notebook (Currently Used in This Document)</p></li>
+<li><p>IDE  -&gt;  Pycharm  (All OSs)</p></li>
+<li><p>IDE  -&gt;  Spyder  (All OSs)</p></li>
+<li><p>IDE  -&gt;  Eclipse+Pydev  (All OSs)</p></li>
+<li><p>IDE  -&gt;  Thonny  (All OSs)</p></li>
+<li><p>IDE  -&gt;  WingIDE  (All OSs)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>一劳永逸，无所不包</strong>：</p>
+<ul class="simple">
+<li><p>根据系统版本下载对应的Anaconnda/Miniconda版本</p></li>
+<li><p>安装下载的Anaconda/Miniconda并配置好对应的环境变量</p></li>
+<li><p>使用Anaconda自带的Spyder或者其他的编辑器软件写python程序</p></li>
+</ul>
+</li>
+</ol>
+<p>尽管他们最终获得的结果是一样的，但具体操作步骤和对计算机熟悉程度的要求是很大的。对于普通初学者而言，我推荐基于Anaconda/Miniconda，能够在最短的时间内获得学习本文档的所有程序。</p>
+</div>
+<div class="section" id="anacondapython">
+<h3>基于Anaconda搭建Python开发环境<a class="headerlink" href="#anacondapython" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>从官网下载Anaconda的安装文件。注意Anaconda的企业版、社区版都是收费的，但是个人版免费！所以我这里直接提供<a class="reference external" href="https://www.anaconda.com/products/individual">个人版的网址</a>。根据系统版本和所需要的python版本选择安装文件。</p></li>
+</ol>
+<p>以下是Anaconda个人版的下载页面</p>
+<p><img alt="image.png" src="_images/anaconda_download_website.png" /></p>
+<ol class="simple">
+<li><p>打开从网上下载的安装包，安装Anaconda软件包。原则上讲，只要正确安装了软件包，应该就能实现即开即用的效果。安装完毕后，在windows的开始菜单搜索Anaconda，可能出现如下效果：
+<img alt="image.png" src="_images/anaconda_install_ok_search.png" /></p></li>
+</ol>
+<p>这里会出现很多项目，大部分在后续会用到。不过，在刚开始的时候我们只需要看到橘色的<strong>Jupyter notebook</strong>和黑色的<strong>Anaconda Prompt</strong>。</p>
+<ol class="simple">
+<li><p>首先是Jupyter notebook。我们点击上面这个橘黄色的Jupyter Notebook打开它，会出来一个黑色的界面，长这个样子：
+<img alt="image.png" src="_images/anaconda_install_ok_jupyter_start.png" />
+然后你的浏览器就会自动跳出来。</p></li>
+</ol>
+<p>假如浏览器没有跳出来也不怕，你看这个黑色的界面也说了，</p>
+<blockquote>
+<div><p>To access the notebook, open this file in a browser: file:///C:/Users/MSi/AppData/Roaming/jupyter/runtime/nbserver-6684-open.html</p>
+</div></blockquote>
+<p>你就自己打开你的浏览器，然后在浏览器的地址栏输入你再点击时出现的网址，按回车就OK。</p>
+<p>我们看到的是这个样子：</p>
+<p><img alt="image.png" src="_images/anaconda_install_ok_jupyter_startpage.png" /></p>
+<p>有的同学可能注意到，这里我们啥都没干就出现了两个文件在里边，可能你的Jupyter打开之后文件还要更多。不过我们先不理它，先上手玩一玩再说，一会儿我再和你讲怎么搞。我们在右上角选择new-Python 3，跳出来这个界面：
+<img alt="image.png" src="_images/anaconda_install_ok_jupyter_newbook.png" /></p>
+<p>然后我们就可以开始我们的代码编写之旅了。我这里标注了最基本的用法，更具体的用法可以直接度娘。后续在文档的丰富过程中，我们会酌情增加。</p>
+<ol class="simple">
+<li><p>修改Jupyter Notebook的默认工作路径。</p></li>
+</ol>
+<p>回过头来，我们再解决一下刚才提到的，在Jupyter界面出现了一些无关文件的原因。其实这是因为Jupyter的默认工作路径放到了C盘里的某个文件夹导致。简单来说，Jupyter的工作路径在哪个文件夹，你就会在Jupyter的界面看到那个文件夹里的文件。所以，接下来我们的工作就是修改Jupyter的工作路径。</p>
+<ul class="simple">
+<li><p>创建一个文件夹作为接下来的工作路径，比如我想把Jupyter的工作路径改到D盘一个叫做jupyter on msi的文件夹，那么我就先在D盘把这个文件夹创建好：（注意这里的文件夹名字必须是英文，不能带中文）
+<img alt="image.png" src="_images/anaconda_install_ok_jupyter_workdirectory.png" /></p></li>
+</ul>
+<ul class="simple">
+<li><p>打开Anaconda Prompt，输入</p></li>
+</ul>
+<blockquote>
+<div><p>jupyter notebook –generate-config</p>
+</div></blockquote>
+<p>程序会自动返回一个地址给你，像这样子：
+<img alt="image.png" src="_images/anaconda_install_ok_jupyter_workdirectory_return.png" /></p>
+<p>按照这个返回的地址，找到配置文件（就是这个jupyter_notebook_config.py），用记事本/txt打开它：
+<img alt="image.png" src="_images/anaconda_install_ok_jupyter_workdirectory_configfile.png" /></p>
+<p>你可以看到每行字前面都是井号，这和Python中的注释一样，表示它们是注释，而不是运行的代码。我们直接在文件的最后加上这句：</p>
+<blockquote>
+<div><p>c.NotebookApp.notebook_dir = ‘D:\jupyter on msi’</p>
+</div></blockquote>
+<p>就可以啦，注意这句代码的前面不要加上#号。这里的D:\jupyter on msi是我自己的工作路径，你可以按照你自己的修改。</p>
+<ul class="simple">
+<li><p>右键点击JupyterNotebook快捷方式，选择属性，删除【目标】里面的【%USERPROFILE%】，点应用-确定即可：
+<img alt="image.png" src="_images/anaconda_install_ok_jupyter_workdirectory_short.jpeg" /></p></li>
+</ul>
+<ul class="simple">
+<li><p>现在你再打开Jupyter notebook，看见的界面就是工作路径里的文件：
+<img alt="image.png" src="_images/anaconda_install_ok_jupyter_startnew.png" /></p></li>
+</ul>
+<ol class="simple">
+<li><p>讲完了Jupyter，我们最后简单讲讲Anaconda Prompt。为什么介绍它，是因为除了配置Jupyter之外，我们在安装库的时候需要用到它。在Anaconda中，如果我们要安装库，需要用到的就是Prompt，只需要打开它，输入对应的指令（pip install blabla）就可以了。后续在文档的完善过程中，我们会陆续增加Anaconda Prompt的示例讲解。</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Python作为简单的计算器<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>We will introduce you to Python by demonstrating features found in any standard graphing calculator. An <strong>arithmetic operation</strong> is either addition, subtraction, multiplication, division, or powers between two numbers. An <strong>arithmetic operator</strong> is a symbol that Python has reserved to mean one of the aforementioned operations. These symbols are + for addition, - for subtraction, * for multiplication, / for division, and ** for exponentiation.</p>
+<p>We say an instruction or operation is <strong>executed</strong> when it is resolved by the computer. An instruction is executed at the command prompt by typing it where you see the &gt;&gt;&gt; symbol in the Python shell (or <code class="docutils literal notranslate"><span class="pre">In</span> <span class="pre">[1]:</span></code> sign in Ipython) and then pressing <code class="docutils literal notranslate"><span class="pre">Enter</span></code>. Or type it in the code cell in Jupyter notebook and pressing <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Enter</span></code>. Since we will use Jupyter notebook for the rest of the book, here we will show all the examples in Ipython shell (Python shell is similar), so that you can familiar with different options.</p>
+<p><strong>TRY IT!</strong> Compute the sum of 1 and 2.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>An <strong>order of operations</strong> is a standard order of precedence that different operations have in relationship to one another. Python utilizes the same order of operations that you learned in grade school. Powers are executed before multiplication and division, which are executed before addition and subtraction. Parentheses, (), can also be used in Python to supersede the standard order of operations.</p>
+<p><strong>TRY IT!</strong> Compute <span class="math notranslate nohighlight">\(\frac{3*4}{(2^2+4/2)}\)</span>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="mf">2.0</span>
+</pre></div>
+</div>
+<p><strong>TIP!</strong> You may have noticed <code class="docutils literal notranslate"><span class="pre">Out[2]</span></code> is the resulting value of the last operation executed. You can use _ symbol to represent this result to break up complicated expressions into simpler commands.</p>
+<p><strong>TRY IT!</strong> Compute 3 divided by 4, then multiply the result by 2, and then raise the result to the 3rd power.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">4</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="mf">0.75</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">_</span><span class="o">*</span><span class="mi">2</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="mf">1.5</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">_</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="mf">3.375</span>
+</pre></div>
+</div>
+<p>Python has many basic arithmetic functions like <code class="docutils literal notranslate"><span class="pre">sin</span></code>, <code class="docutils literal notranslate"><span class="pre">cos</span></code>, <code class="docutils literal notranslate"><span class="pre">tan</span></code>, <code class="docutils literal notranslate"><span class="pre">asin</span></code>, <code class="docutils literal notranslate"><span class="pre">acos</span></code>, <code class="docutils literal notranslate"><span class="pre">atan</span></code>, <code class="docutils literal notranslate"><span class="pre">exp</span></code>, <code class="docutils literal notranslate"><span class="pre">log</span></code>, <code class="docutils literal notranslate"><span class="pre">log10</span></code> and <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> stored in a module (We will explain it later in this chapter) called <strong>math</strong>. We can import this module first to get access to these functions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">math</span>
+</pre></div>
+</div>
+<p><strong>TIP!</strong> In Jupyter notebook and Ipython, you can have a quick view of what’s in the module by type the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">name</span> <span class="pre">+</span> <span class="pre">dot</span> <span class="pre">+</span> <span class="pre">TAB</span></code>. Furthermore, if you type the first few letters of the function and press TAB, it could automatically complete the function for you, the so called - TAB completion.</p>
+<p><img alt="Tab_completion" src="_images/01.02.01-ipython_tab.png" /></p>
+<p>The way we use these mathematical functions is <code class="docutils literal notranslate"><span class="pre">module.function</span></code>, the inputs to them are always placed inside of parentheses that are connected to the function name. For trigonometric functions, it is useful to have the value of <span class="math notranslate nohighlight">\(\pi\)</span> available. You can call this value at any time by typing <code class="docutils literal notranslate"><span class="pre">math.pi</span></code> in the code cell. Note that the value of <span class="math notranslate nohighlight">\(\pi\)</span> is stored in Python to 16 digits.</p>
+<p><strong>TRY IT!</strong> Find the square root of 4.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="mf">2.0</span>
+</pre></div>
+</div>
+<p><strong>TRY IT!</strong> Compute the <span class="math notranslate nohighlight">\(sin(\frac{\pi}{2})\)</span>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>Python will compose functions as you would expect, with the innermost function being executed first. The same holds true for function calls that are composed with arithmetic operations.</p>
+<p><strong>TRY IT!</strong> Compute <span class="math notranslate nohighlight">\(e^{log10}\)</span>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="mf">10.000000000000002</span>
+</pre></div>
+</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">log</span></code> function in Python is <span class="math notranslate nohighlight">\(log_e\)</span>, or the natural logarithm. It is not <span class="math notranslate nohighlight">\(log_{10}\)</span>. If you want to use <span class="math notranslate nohighlight">\(log_{10}\)</span>, you need to use <code class="docutils literal notranslate"><span class="pre">math.log10</span></code>.</p>
+<p><strong>TIP!</strong> You can see the result above should be 10, but it is showing 10.000000000000002, this is due to Python’s number approximation, which we will learn more in chapter 9.</p>
+<p><strong>TRY IT!</strong> Compute <span class="math notranslate nohighlight">\(e^\frac{3}{4}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="mf">2.117000016612675</span>
+</pre></div>
+</div>
+<p><strong>TIP!</strong> Using the UP ARROW in the command prompt recalls previous commands that were executed. If you accidentally type a command incorrectly, you can use the UP ARROW to recall it, and then edit it instead of retyping the entire line.</p>
+<p>Many times, when you use a function in Python, you want to get some help on the context of the function. In Ipython or Jupyter notebook you can view the description of any function by typing <code class="docutils literal notranslate"><span class="pre">function?</span></code>, that is the question mark is a shortcut to get help. If you see a function you are unfamiliar with, it is good practice to use the question mark before you asking your instructors what a specific function does.</p>
+<p><strong>WARNING!</strong> For some functions, the help file can be extremely complicated and wordy, even for simple functions. In these cases, do not be afraid to ask your instructor for help.</p>
+<p><strong>TRY IT!</strong> Use the question mark to find the definition of the factorial function</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>In [11]: math.factorial?
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Signature: math.factorial(x, /)
+Docstring:
+Find x!.
+
+Raise a ValueError if x is negative or non-integral.
+Type:      builtin_function_or_method
+</pre></div>
+</div>
+<p>Python will raise an <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code> when you have expression 1/0, which is infinity, to remind you.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">ZeroDivisionError</span>                         <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mf">9e1622</span><span class="n">b385b6</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
+
+<span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
+</pre></div>
+</div>
+<p>You can type <code class="docutils literal notranslate"><span class="pre">math.inf</span></code> at the command prompt to denote infinity or <code class="docutils literal notranslate"><span class="pre">math.nan</span></code> to denote something that is not a number that you wish to be handled as a number. If this is confusing, this distinction can be skipped for now; it will be explained more clearly when it becomes important. Finally, Python can also handle the imaginary number.</p>
+<p><strong>TRY IT!</strong> <span class="math notranslate nohighlight">\(1/\infty\)</span>, and <span class="math notranslate nohighlight">\(\infty*2\)</span> to verify that Python handles infinity as you would expect.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="mi">1</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">inf</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="mf">0.0</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">inf</span>
+</pre></div>
+</div>
+<p><strong>TRY IT!</strong> Compute <span class="math notranslate nohighlight">\(\infty/\infty\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">inf</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">nan</span>
+</pre></div>
+</div>
+<p><strong>TRY IT!</strong> Compute sum 2 + 5i</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span><span class="n">j</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">5</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that, in Python imaginary part is using j instead of i to represent.</p>
+<p>Another way to represent complex number in Python is to use the complex function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="nb">complex</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">5</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Python can also handle scientific notation using the letter e between two numbers. For example, <span class="math notranslate nohighlight">\(1e6=1000000\)</span> and <span class="math notranslate nohighlight">\(1e-3=0.001\)</span>.</p>
+<p><strong>TRY IT!</strong> Compute the number of seconds in 3 years using scientific notation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="mf">3e0</span><span class="o">*</span><span class="mf">3.65e2</span><span class="o">*</span><span class="mf">2.4e1</span><span class="o">*</span><span class="mf">3.6e3</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="mf">94608000.0</span>
+</pre></div>
+</div>
+<p><strong>TIP!</strong> Every time when we type the function in <em>math</em> module, we always type <code class="docutils literal notranslate"><span class="pre">math.function_name</span></code>. Alternatively, there is a simpler way, for example, if we want to use <code class="docutils literal notranslate"><span class="pre">sin</span></code> and <code class="docutils literal notranslate"><span class="pre">log</span></code> from <code class="docutils literal notranslate"><span class="pre">math</span></code> module, we could import them this way: <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">math</span> <span class="pre">import</span> <span class="pre">sin,</span> <span class="pre">log</span></code>. Then you all you need to do when using these functions is using them directly, for example, <code class="docutils literal notranslate"><span class="pre">sin(20)</span></code> or <code class="docutils literal notranslate"><span class="pre">log(10)</span></code>.</p>
+<div class="section" id="basic-data-types">
+<h3>Basic Data Types<a class="headerlink" href="#basic-data-types" title="Permalink to this headline">¶</a></h3>
+<p>We just learned to use Python as a calculator to deal with different data values. In Python, there are a few data types we need to know, for numerical values, int, float, and complex are the types associated with the values.</p>
+<ul class="simple">
+<li><p><strong>int</strong>: Integers, such as 1, 2, 3, …</p></li>
+<li><p><strong>float</strong>: Floating-point numbers, such as 3.2, 6.4, …</p></li>
+<li><p><strong>complex</strong>: Complex numbers, such as 2 + 5j, 3 + 2j, …</p></li>
+</ul>
+<p>You can use function <em>type</em> to check the data type for different values.</p>
+<p><strong>TRY IT!</strong> Find out the data type for 1234.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="nb">type</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="nb">int</span>
+</pre></div>
+</div>
+<p><strong>TRY IT!</strong> Find out the data type for 3.14.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="nb">type</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="nb">float</span>
+</pre></div>
+</div>
+<p><strong>TRY IT!</strong> Find out the data type for 2 + 5j.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="nb">type</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span><span class="n">j</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="nb">complex</span>
+</pre></div>
+</div>
+<p>Of course, there are other different data types, such as boolean, string and so on, we will introduce them later in the book.</p>
+<p>In this section, we talked about how to use Python as a calculator by running commands in the Python shell. Let’s go ahead to learn more about the managing packages, i.e. how to install, upgrade, and remove the packages before we do more coding.</p>
+</div>
+</div>
+<div class="section" id="pythonpackage">
+<h2>管理Python的package<a class="headerlink" href="#pythonpackage" title="Permalink to this headline">¶</a></h2>
+<p>One feature makes Python really great is the various packages/modules developed by the community. Most of the time, when you want to use some functions or algorithms, you will find there maybe already multiple packages from the community coded that for you, and all you need to do is to install the packages and use them in your code. Therefore, managing packages is one of the most important skills you need to learn to fully take advantage of Python. In this section, we will show you how to manage the packages in Python.</p>
+<div class="section" id="managing-packages-using-package-managers">
+<h3>Managing packages using package managers<a class="headerlink" href="#managing-packages-using-package-managers" title="Permalink to this headline">¶</a></h3>
+<p>At the beginning of this book, we installed some packages using pip by typing <em>pip install package_name</em>. This is the most common and easy way these days to install Python packages. Pip is a package manager that automates the process of installing, updating, and removing the packages. It could install packages that published on <a class="reference external" href="https://pypi.org/">Python Package Index (PyPI)</a>. When we installed the Miniconda installer, it also installed pip for you to use.</p>
+<p>First of all, you can use <em>pip help</em> to get help for different commands as shown below.</p>
+<p><img alt="Pip_help" src="_images/01.03.01-pip_help.png" /></p>
+<p>But the most used commands usually include: the install, upgrade, and uninstall a package.</p>
+<div class="section" id="install-a-package">
+<h4>Install a package<a class="headerlink" href="#install-a-package" title="Permalink to this headline">¶</a></h4>
+<p>To install the latest version of package_name:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install package_name
+</pre></div>
+</div>
+<p>To install a specific version:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install <span class="nv">package_name</span><span class="o">==</span><span class="m">1</span>.5
+</pre></div>
+</div>
+<p>Pip will install the package as well as the dependencies for you to use.</p>
+</div>
+<div class="section" id="upgrade-a-package">
+<h4>Upgrade a package<a class="headerlink" href="#upgrade-a-package" title="Permalink to this headline">¶</a></h4>
+<p>To upgrade an installed package to the latest version from PyPI.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install --upgrade package_name
+</pre></div>
+</div>
+<p>or simply</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -U package_name
+</pre></div>
+</div>
+</div>
+<div class="section" id="uninstall-a-package">
+<h4>Uninstall a package<a class="headerlink" href="#uninstall-a-package" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip uninstall package_name
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-useful-commands">
+<h4>Other useful commands<a class="headerlink" href="#other-useful-commands" title="Permalink to this headline">¶</a></h4>
+<p>There are some other useful commands that you usually use to get information about the installed packages. For example, if you want to get a list of all the installed packages, you can use the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip list
+</pre></div>
+</div>
+<p><img alt="Pip_list" src="_images/01.03.02-pip_list.png" /></p>
+<p>If you want to know more about an installed package, such as the location of the package, the required dependencies, and so on, you can use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip show package_name
+</pre></div>
+</div>
+<p><img alt="Pip_show" src="_images/01.03.03-pip_show.png" /></p>
+<p>There are other package managers, like conda that shipped with the Anaconda distribution, but for usage, it is similar to pip, therefore, we won’t talk too much here, you can find more information by reading the <a class="reference external" href="https://conda.io/docs/user-guide/getting-started.html">documentation</a>.</p>
+</div>
+</div>
+<div class="section" id="install-packages-from-source">
+<h3>Install packages from source<a class="headerlink" href="#install-packages-from-source" title="Permalink to this headline">¶</a></h3>
+<p>Occasionally, you need to download the source file for some project that is not in the PyPI, then you need a different way to install the package. After uncompressing the file you downloaded, usually you can see the folder contains a setup script <em><a class="reference external" href="http://setup.py">setup.py</a></em>, and a file named README, which documents how to build and install the module. For most cases, you just need to run one command from the terminal to install the package:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python setup.py install
+</pre></div>
+</div>
+<p>Note, for the Windows users, you need to run your command from a command prompt window:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>Now you know how to manage the packages in Python, which is a big step forward to use Python correctly, and in the next section, we will talk more about the Jupyter notebook that we will use for the rest of the book.</p>
+</div>
+</div>
+<div class="section" id="jupyter-notebook">
+<h2>Jupyter Notebook简介<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h2>
+<p>You have already used the IPython shell to run the code line by line. This is good, but if you have a more lines of codes and want to run it block by block and share it easily with others, the Ipython shell is not a good option. In this section, we will introduce another option - Jupyter notebook, that we will use for the rest of the book. From the <a class="reference external" href="http://jupyter.org/">Jupyter notebook website</a>:</p>
+<blockquote>
+<div><p>The Jupyter Notebook is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.</p>
+</div></blockquote>
+<p>Jupyter notebook is running using your browser, it could run locally on your machine as a local server or remotely on a server. The reason it is called notebook is because it can contain live code, rich text elements such as equations, links, images, tables, and so on. Therefore, you could have a very nice notebook to describe your idea and the live code all in one document. Thus Jupyter notebook becomes really popular way to test ideas, writing blogs, papers and even books, for example, this book is written entirely within Jupyter notebook. Of course, it has many other advantages, and we will only cover the basics of the Jupyter notebook to get you started.</p>
+<div class="section" id="start-jupyter-notebook">
+<h3>Start Jupyter notebook<a class="headerlink" href="#start-jupyter-notebook" title="Permalink to this headline">¶</a></h3>
+<p>We saw before that we could start Jupyter notebook by typing the following command in our terminal in the folder where you want the notebooks are:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter notebook
+</pre></div>
+</div>
+<p>Then you will see the Jupyter notebook dashboard in the browser, the default address is: <a class="reference external" href="http://localhost:8888">http://localhost:8888</a>, that is at the localhost with port 8888 as shown in the following figure (if the port 8888 is taken by other Jupyter notebooks, then it will automatically use another port). This is essentially creating a local server to run in your browser. When you navigate to the browser, you will see a dashboard. In this dashboard, you can see some important features that labeled in red: you can see all the files in the current folder, show all the running notebooks, and create a new notebook or others such as text file, folder and a terminal. We can create a new Python notebook by selecting the Python 3, usually this is called Python kernel. You can use Jupyter to run some other kernels as well, for example, in the following figure, there are Bash and Julia kernels that you could run as a notebook, but you need to install them first. We will use the Python kernel, therefore, choose Python 3 kernel.</p>
+<p><img alt="Jupyter_dashboard" src="_images/01.04.01-jupyter_dashboard.png" /></p>
+</div>
+<div class="section" id="within-the-notebook">
+<h3>Within the notebook<a class="headerlink" href="#within-the-notebook" title="Permalink to this headline">¶</a></h3>
+<p>After you create a new Python notebook, it will look like the following figure. The toolbar and menu is self-explanatory when you hover your cursor to the toolbar, it will show you the function of the tool and press the menu, it will show you the drop down list. The most important things to know the Jupyter notebook are the cells and the different types. In the notebook, a cell is a place where you can write your code or text in it, and run this cell to only execute code within this cell block. Two important cell types are code and markdown, the code cell is where you type your code and can run the code in it. The markdown cell is a place you can type the description in rich text format, see the following figure as an example. You can search for ‘Markdown cheatsheet’ to get a quick start with markdown. To run the code or renter the markdown in the notebook is simple, just press Shift + Enter.</p>
+<p><img alt="Notebook_view" src="_images/01.04.02-within_notebook.png" /></p>
+<p>In the notebook, you can move the cell up or down, insert or delete cell, and so on. There are many other nice features about Jupyter notebook, we won’t talk too much here, but you can find many tutorials online to learn more.</p>
+</div>
+<div class="section" id="shut-down-the-jupyter-notebook">
+<h3>Shut down the Jupyter notebook<a class="headerlink" href="#shut-down-the-jupyter-notebook" title="Permalink to this headline">¶</a></h3>
+<p>Closing the browser will not close the Jupyter notebook, since the server is still running. You can reopen the previous address in a browser. To completely shut down it, we need to close the associated terminal that you launch the Jupyter noteobok.</p>
+</div>
+<div class="section" id="close-a-notebook">
+<h3>Close a notebook<a class="headerlink" href="#close-a-notebook" title="Permalink to this headline">¶</a></h3>
+<p>When you close the notebook browser tab, the notebook actually is not closed, it is still running in the background. If you need completely close a notebook, go to the dashboard, and check the box before the notebook, and you can see a shutdown option in the toolbar above, this is the correct way you close a notebook completely.</p>
+<p>Ok, now you have the basic knowledge to launch and run a Jupyter notebook, and it is time to continue to learn Python.</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>Python逻辑表达式和操作算子<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>logical expression</strong> is a statement that can either be true or false. For example, <span class="math notranslate nohighlight">\(a &lt; b\)</span> is a logical expression. It can be true or false depending on what values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are given. Note that this differs from a <strong>mathematical expression</strong> which denotes a truth statement. In the previous example, the mathematical expression <span class="math notranslate nohighlight">\(a &lt; b\)</span> means that <span class="math notranslate nohighlight">\(a\)</span> is less than <span class="math notranslate nohighlight">\(b\)</span>, and values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> where <span class="math notranslate nohighlight">\(a \ge b\)</span> are not permitted. Logical expressions form the basis of computing, so for the purposes of this book, all statements are assumed to be logical rather than mathematical unless otherwise indicated.</p>
+<p>In Python, a logical expression that is true will compute to the value “True”. A false expression will compute to the value “False”. This is a new data type we come across - <strong>boolean</strong>, which has the built-in values <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code>. For the purpose of this book, “True” is equivalent to 1, and “False” is equivalent to 0. Distinguishing between the numbers 1 and 0 and the logical values “True” and “False” is beyond the scope of this book, but it is covered in more advanced books on computing. Logical expressions are used to pose questions to Python. For example, “<span class="math notranslate nohighlight">\(3 &lt; 4\)</span>” is equivalent to, “Is 3 less than 4?” Since this statement is true, Python will compute it as 1. However, <span class="math notranslate nohighlight">\(3 &gt; 4\)</span> is false, therefore Python will compute it as 0.</p>
+<p><strong>Comparison operators</strong> compare the value of two numbers, and they are used to build logical expressions. Python reserves the symbols <span class="math notranslate nohighlight">\(&gt;, &gt;=, &lt;, &lt;=, !=, ==\)</span>, to denote “greater than”, “greater than or equal”, “less than”, “less than or equal”, “not equal”, and “equal”, respectively. Let’s start with an example a = 4, b = 2, and see the following table:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Operator</p></th>
+<th class="text-align:center head"><p>Description</p></th>
+<th class="text-align:center head"><p>Example</p></th>
+<th class="text-align:center head"><p>Results</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>&gt;</p></td>
+<td class="text-align:center"><p>greather than</p></td>
+<td class="text-align:center"><p>a &gt; b</p></td>
+<td class="text-align:center"><p>True</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>&gt;=</p></td>
+<td class="text-align:center"><p>greater than or equal</p></td>
+<td class="text-align:center"><p>a &gt;= b</p></td>
+<td class="text-align:center"><p>True</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>&lt;</p></td>
+<td class="text-align:center"><p>less than</p></td>
+<td class="text-align:center"><p>a &lt; b</p></td>
+<td class="text-align:center"><p>False</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>&lt;=</p></td>
+<td class="text-align:center"><p>“less than or equal</p></td>
+<td class="text-align:center"><p>a &lt;= b</p></td>
+<td class="text-align:center"><p>False</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>!=</p></td>
+<td class="text-align:center"><p>not equal</p></td>
+<td class="text-align:center"><p>a != b</p></td>
+<td class="text-align:center"><p>True</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>==</p></td>
+<td class="text-align:center"><p>equal</p></td>
+<td class="text-align:center"><p>a == b</p></td>
+<td class="text-align:center"><p>False</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>TRY IT!</strong> Compute the logical expression for “Is 5 equal to 4?” and “Is 2 smaller than 3?”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">==</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">&lt;</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Logical operators</strong> are operations between two logical expressions that, for the sake of discussion, we call <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span>. The fundamental logical operators we will use herein are <strong>and</strong>, <strong>or</strong>, and <strong>not</strong>.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Operator</p></th>
+<th class="text-align:center head"><p>Description</p></th>
+<th class="text-align:center head"><p>Example</p></th>
+<th class="text-align:center head"><p>Results</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>and</p></td>
+<td class="text-align:center"><p>greather than</p></td>
+<td class="text-align:center"><p>P and Q</p></td>
+<td class="text-align:center"><p>True if both P and Q are True<br>False otherwise</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>or</p></td>
+<td class="text-align:center"><p>greater than or equal</p></td>
+<td class="text-align:center"><p>P or Q</p></td>
+<td class="text-align:center"><p>True if either P or Q is True<br>False otherwise</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>not</p></td>
+<td class="text-align:center"><p>less than</p></td>
+<td class="text-align:center"><p>not P</p></td>
+<td class="text-align:center"><p>True if P is False<br>False if P is True</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>truth table</strong> of a logical operator or expression gives the result of every truth combination of <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span>. The truth tables for “and” and “or” are given in the following figure.</p>
+<p><img alt="truth_table" src="_images/01.05.01-truth_table.png" /></p>
+<p><strong>TRY IT!</strong> Assuming <span class="math notranslate nohighlight">\(P\)</span> is true, use Python to determine if the expression <span class="math notranslate nohighlight">\((P\ AND\ NOT(Q))\ OR\ (P\ AND\ Q)\)</span> is always true regardless of whether or not <span class="math notranslate nohighlight">\(Q\)</span> is true. Logically, can you see why this is the case? First assume <span class="math notranslate nohighlight">\(Q\)</span> is true:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="mi">1</span> <span class="ow">and</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="mi">1</span> <span class="ow">and</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Just as with arithmetic operators, logical operators have an order of operations relative to each other and in relation to arithmetic operators. All arithmetic operations will be executed before comparison operations, which will be executed before logical operations. Parentheses can be used to change the order of operations.</p>
+<p><strong>TRY IT!</strong> Compute (1 + 3)&gt;(2 + 5)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>TIP!</strong> Even when the order of operations is known, it is usually helpful for you and those reading your code to use parentheses to make your intentions clearer. In the preceding example (1 + 3) &gt; (2 + 5) is clearer.</p>
+<p><strong>WARNING!</strong> In Python’s implementation of logic, 1 is used to denote true and 0 for false. However, 1 and 0 are still numbers. Therefore, Python will allow abuses such as: (3 &gt; 2) + (5 &gt; 4), which will resolve to 2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">3</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>WARNING!</strong> Although in formal logic, 1 is used to denote true and 0 to denote false, Python slightly abuses notation and it will take any number not equal to 0 to mean true when used in a logical operation. For example, 3 and 1 will compute to true. Do not utilize this feature of Python. Always use 1 to denote a true statement.</p>
+<p><strong>TRY IT!</strong> A fortnight is a length of time consisting of 14 days. Use a logical expression to determine if there are more than 100,000 seconds in a fortnight.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">14</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100000</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>小结<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>本章简单小节<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>You learned the basics of Python to set up the working environment and ways to run Python.</p></li>
+<li><p>Python can be used as a calculator. It has all the functions and arithmetic operations commonly used with a scientific calculator.</p></li>
+<li><p>You can manage the Python packages.</p></li>
+<li><p>You learned how to interact with Jupyter notebook.</p></li>
+<li><p>You can also use Python to perform logical operations.</p></li>
+<li><p>You now come across int, float, complex, string, boolean data types in Python.</p></li>
+</ol>
+</div>
+<div class="section" id="id6">
+<h3>思考题？<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Print “I love Python” using Python Shell.</p></li>
+<li><p>Print “I love Python” by typing it into a .py file and run it from command line.</p></li>
+<li><p>Type <em>import antigravity</em> in the Ipython Shell, it will take you to xkcd and see the awesome Python.</p></li>
+<li><p>Launch a new Jupyter notebook server in a folder called “excercis” and create a new Python notebook with the name “excercis_1”, then you can do the rest of the problems within this notebook.</p></li>
+<li><p>Compute the area of a triangle with base 10 and height 12. Recall that the area of a triangle is half the base times the height.</p></li>
+<li><p>Compute the surface area and volume of a cylinder with radius 5 and height 3.</p></li>
+<li><p>Compute the slope between the points <span class="math notranslate nohighlight">\((3,4)\)</span> and <span class="math notranslate nohighlight">\((5,9)\)</span>. Recall that the slope between points <span class="math notranslate nohighlight">\((x_1,y_1)\)</span> and <span class="math notranslate nohighlight">\((x_2, y_2)\)</span> is <span class="math notranslate nohighlight">\(\frac{y_2 - y_1}{x_2 - x_1}\)</span>.</p></li>
+<li><p>Compute the distance between the points <span class="math notranslate nohighlight">\((3,4)\)</span> and <span class="math notranslate nohighlight">\((5,9)\)</span>. Recall that the distance between points in two dimensions is <span class="math notranslate nohighlight">\(\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\)</span>.</p></li>
+<li><p>Use Python’s <em>factorial</em> function to compute <span class="math notranslate nohighlight">\(6!\)</span></p></li>
+<li><p>A year is considered to be 365 days long. However, a more exact figure is 365.24 days. As a consequence, if we held to the standard 365-day year, we would gradually lose that fraction of the day over time, and seasons and other astronomical events would not occur as expected. A leap year is a year that has an extra day, February 29, to keep the timescale on track. Leap years occur on years that are exactly divisible by 4, unless it is exactly divisible by 100, unless it is divisible by 400. For example, the year 2004 is a leap year, the year 1900 is not a leap year, and the year 2000 is a leap year.<br>
+Compute the number of leap years between the years 1500 and 2010.</p></li>
+<li><p>A very powerful approximation for <span class="math notranslate nohighlight">\(\pi\)</span> was developed by a brilliant mathematician named Srinivasa Ramanujan. The approximation is the following:<br>
+<span class="math notranslate nohighlight">\(\frac{1}{\pi} \approx \frac{2\sqrt{2}}{9801} \sum_{k=0}^{N} \frac{(4k)!(1103 + 26390k)}{(k!)^4 396^{4k}}\)</span>.<br>
+Use Ramanujan’s formula for <span class="math notranslate nohighlight">\(N = 0\)</span> and <span class="math notranslate nohighlight">\(N = 1\)</span> to approximate <span class="math notranslate nohighlight">\(\pi\)</span>. Be sure to use format long. Compare your approximation with Python’s stored value for <em>pi</em>. Hint: <span class="math notranslate nohighlight">\(0! = 1\)</span> by definition.</p></li>
+<li><p>The hyperbolic <span class="math notranslate nohighlight">\(sin\)</span> or <span class="math notranslate nohighlight">\(sinh\)</span> is defined in terms of exponentials as <span class="math notranslate nohighlight">\(sinh(x) = \frac{\exp(x) - \exp(-x)}{2}\)</span>.<br>
+Compute <span class="math notranslate nohighlight">\(sinh\)</span> for <span class="math notranslate nohighlight">\(x = 2\)</span> using exponentials. Verify that the result is indeed the hyperbolic <span class="math notranslate nohighlight">\(sin\)</span> using Python’s function <em>sinh</em> in the math module.</p></li>
+<li><p>Verify that <span class="math notranslate nohighlight">\(\sin^2(x) + \cos^2(x) = 1\)</span> for <span class="math notranslate nohighlight">\(x = \pi, \frac{\pi}{2}, \frac{\pi}{4}, \frac{\pi}{6}\)</span>.</p></li>
+<li><p>Compute the <span class="math notranslate nohighlight">\(\sin87\)</span>°.</p></li>
+<li><p>Write a Python statement that generates the following error:<br>
+“AttributeError: module ‘math’ has no attribute ‘sni’”<br>
+Hint: sni is a misspelling of the function <em>sin</em>.</p></li>
+<li><p>Write a Python statement that generates the following error:<br>
+“TypeError: sin() takes exactly one argument (0 given)”<br>
+Hint: Input arguments refers to the input of a function (any function); for example, the input in <span class="math notranslate nohighlight">\(sin(pi/2)\)</span> is <span class="math notranslate nohighlight">\(pi/2\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(P\)</span> is a logical expression, the law of noncontradiction states that <span class="math notranslate nohighlight">\(P\ AND\ (NOT\ P)\)</span> is always false. Verify this for <span class="math notranslate nohighlight">\(P\)</span> true and <span class="math notranslate nohighlight">\(P\)</span> false.</p></li>
+<li><p>Let P and Q be logical expressions. De Morgan’s rule states that <span class="math notranslate nohighlight">\(NOT\ (P\ OR\ Q)\ =\ (NOT\ P)\ AND\
+(NOT\ Q)\)</span> and <span class="math notranslate nohighlight">\(NOT\ (P\ AND\ Q)\ =\ (NOT\ P)\ OR\ (NOT\ Q)\)</span>. Generate the truth tables for each statement to show that De Morgan’s rule is always true.</p></li>
+<li><p>Under what conditions for <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> is (<span class="math notranslate nohighlight">\(P\ AND\ Q)\ OR\ (P\ AND\ (NOT\ Q)\)</span>) false?</p></li>
+<li><p>Construct an equivalent logical expression for OR using only AND and NOT.</p></li>
+<li><p>Construct an equivalent logical expression for AND using only OR and NOT.</p></li>
+<li><p>The logical operator XOR has the following truth table:<br>
+Construct an equivalent logical expression for XOR using only AND, OR, and NOT that has the same truth table (see the following figure)</p></li>
+</ol>
+<p><img alt="XOR" src="images/01.06.01-truth_table.png" /></p>
+<ol class="simple">
+<li><p>Do the following calculation at the Python command prompt.<br>
+<span class="math notranslate nohighlight">\(e^{2}\sin{\pi/6} + log_e(3)\cos{\pi/9}-5^3\)</span></p></li>
+<li><p>Do the following logical and comparison operations at the Python command prompt. You may assume that P and Q are logical expressions.<br>
+For P = 1 and Q = 1; Compute <span class="math notranslate nohighlight">\(NOT(P)\ AND\ NOT(Q)\)</span>.<br>
+For a = 10 and b = 25; Compute <span class="math notranslate nohighlight">\((a&lt;b)\ AND\ (a=b)\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="mc_numerics_ch00_index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><center> 数值计算方法 - Python实现</center></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="mc_numerics_ch14-Linear-System-of-Equations.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><center> 第14章: 线性方程组求解</center></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By The Jupyter Book Community<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

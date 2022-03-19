@@ -1,0 +1,2559 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>第14章: 线性方程组求解 &#8212; My sample book</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第19章: 非线性方程求根" href="mc_numerics_ch19-Roots-of-Nonlinear-Equations.html" />
+    <link rel="prev" title="第01章: Python基础" href="mc_numerics_ch01-Python-Basics.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">My sample book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="mc_numerics_ch00_index.html">
+   <center>
+    数值计算方法 - Python实现
+   </center>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mc_numerics_ch01-Python-Basics.html">
+   <center>
+    第01章: Python基础
+   </center>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <center>
+    第14章: 线性方程组求解
+   </center>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mc_numerics_ch19-Roots-of-Nonlinear-Equations.html">
+   <center>
+    第19章: 非线性方程求根
+   </center>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/mc_numerics_ch14-Linear-System-of-Equations.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmc_numerics_ch14-Linear-System-of-Equations.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/mc_numerics_ch14-Linear-System-of-Equations.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   序言
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   线性代数基础
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     集合
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     矢量
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     矩阵
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       矩阵的基本运算
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     线性变换
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     矢量空间、矢量与范数
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       矢量空间
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       矢量空间的范数
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       矩阵的范数
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   线性方程组的解
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     线性方程组示例
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     线性方程组的解的存在唯一性定理
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   解线性方程组的直接法
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     消元法
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-elimination">
+       高斯消元法（Gauss Elimination）
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-elimination-with-partial-pivoting">
+       列主元消元法（Gauss Elimination with Partial Pivoting）
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-elimination-with-complete-pivoting">
+       全主元消元法（Gauss Elimination with Complete Pivoting）
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-jordan-elimination">
+       高斯-约旦消元法（Gauss-Jordan Elimination）
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#python">
+       消元法的python实现
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     矩阵分解法
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-elimination-as-matrix-decomposition">
+       高斯消元法与矩阵分解（Gauss Elimination as Matrix Decomposition）
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lu-lu-decomposition-of-matrices">
+       矩阵的LU分解（LU decomposition of matrices）
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lu">
+       LU分解法解线性方程组
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plu">
+       矩阵的PLU分解
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       PLU分解法解线性方程组
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id19">
+       对称矩阵及对称正定矩阵的分解
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id20">
+       矩阵分解法的python实现
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     迭代法求线性方程组
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       迭代法的基本构造方法
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id23">
+       迭代法的收敛特性
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-seidel">
+       Gauss-Seidel迭代
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#jacobi">
+       Jacobi迭代
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sor">
+       超松弛(SOR)迭代
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id24">
+   小结
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id25">
+   思考和习题
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><center> 第14章: 线性方程组求解</center></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   序言
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   线性代数基础
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     集合
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     矢量
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     矩阵
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       矩阵的基本运算
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     线性变换
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     矢量空间、矢量与范数
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       矢量空间
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       矢量空间的范数
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       矩阵的范数
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   线性方程组的解
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     线性方程组示例
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     线性方程组的解的存在唯一性定理
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   解线性方程组的直接法
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     消元法
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-elimination">
+       高斯消元法（Gauss Elimination）
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-elimination-with-partial-pivoting">
+       列主元消元法（Gauss Elimination with Partial Pivoting）
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-elimination-with-complete-pivoting">
+       全主元消元法（Gauss Elimination with Complete Pivoting）
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-jordan-elimination">
+       高斯-约旦消元法（Gauss-Jordan Elimination）
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#python">
+       消元法的python实现
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     矩阵分解法
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-elimination-as-matrix-decomposition">
+       高斯消元法与矩阵分解（Gauss Elimination as Matrix Decomposition）
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lu-lu-decomposition-of-matrices">
+       矩阵的LU分解（LU decomposition of matrices）
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lu">
+       LU分解法解线性方程组
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plu">
+       矩阵的PLU分解
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       PLU分解法解线性方程组
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id19">
+       对称矩阵及对称正定矩阵的分解
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id20">
+       矩阵分解法的python实现
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     迭代法求线性方程组
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       迭代法的基本构造方法
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id23">
+       迭代法的收敛特性
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gauss-seidel">
+       Gauss-Seidel迭代
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#jacobi">
+       Jacobi迭代
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sor">
+       超松弛(SOR)迭代
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id24">
+   小结
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id25">
+   思考和习题
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="center-14-center">
+<h1><center> 第14章: 线性方程组求解</center><a class="headerlink" href="#center-14-center" title="Permalink to this headline">¶</a></h1>
+<center>（Chapter 14: Linear System of Equations）</center><h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#序言" data-toc-modified-id="序言-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>序言</a></span></li><li><span><a href="#线性代数基础" data-toc-modified-id="线性代数基础-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>线性代数基础</a></span><ul class="toc-item"><li><span><a href="#集合" data-toc-modified-id="集合-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>集合</a></span></li><li><span><a href="#矢量" data-toc-modified-id="矢量-2.2"><span class="toc-item-num">2.2&nbsp;&nbsp;</span>矢量</a></span></li><li><span><a href="#矩阵" data-toc-modified-id="矩阵-2.3"><span class="toc-item-num">2.3&nbsp;&nbsp;</span>矩阵</a></span><ul class="toc-item"><li><span><a href="#矩阵的基本运算" data-toc-modified-id="矩阵的基本运算-2.3.1"><span class="toc-item-num">2.3.1&nbsp;&nbsp;</span>矩阵的基本运算</a></span></li></ul></li><li><span><a href="#线性变换" data-toc-modified-id="线性变换-2.4"><span class="toc-item-num">2.4&nbsp;&nbsp;</span>线性变换</a></span></li><li><span><a href="#矢量空间、矢量与范数" data-toc-modified-id="矢量空间、矢量与范数-2.5"><span class="toc-item-num">2.5&nbsp;&nbsp;</span>矢量空间、矢量与范数</a></span><ul class="toc-item"><li><span><a href="#矢量空间" data-toc-modified-id="矢量空间-2.5.1"><span class="toc-item-num">2.5.1&nbsp;&nbsp;</span>矢量空间</a></span></li><li><span><a href="#矢量空间的范数" data-toc-modified-id="矢量空间的范数-2.5.2"><span class="toc-item-num">2.5.2&nbsp;&nbsp;</span>矢量空间的范数</a></span></li><li><span><a href="#矩阵的范数" data-toc-modified-id="矩阵的范数-2.5.3"><span class="toc-item-num">2.5.3&nbsp;&nbsp;</span>矩阵的范数</a></span></li></ul></li></ul></li><li><span><a href="#线性方程组的解" data-toc-modified-id="线性方程组的解-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>线性方程组的解</a></span><ul class="toc-item"><li><span><a href="#线性方程组示例" data-toc-modified-id="线性方程组示例-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span>线性方程组示例</a></span></li><li><span><a href="#线性方程组的解的存在唯一性定理" data-toc-modified-id="线性方程组的解的存在唯一性定理-3.2"><span class="toc-item-num">3.2&nbsp;&nbsp;</span>线性方程组的解的存在唯一性定理</a></span></li></ul></li><li><span><a href="#解线性方程组的直接法" data-toc-modified-id="解线性方程组的直接法-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>解线性方程组的直接法</a></span><ul class="toc-item"><li><span><a href="#消元法" data-toc-modified-id="消元法-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>消元法</a></span><ul class="toc-item"><li><span><a href="#高斯消元法（Gauss-Elimination）" data-toc-modified-id="高斯消元法（Gauss-Elimination）-4.1.1"><span class="toc-item-num">4.1.1&nbsp;&nbsp;</span>高斯消元法（Gauss Elimination）</a></span></li><li><span><a href="#列主元消元法（Gauss-Elimination-with-Partial-Pivoting）" data-toc-modified-id="列主元消元法（Gauss-Elimination-with-Partial-Pivoting）-4.1.2"><span class="toc-item-num">4.1.2&nbsp;&nbsp;</span>列主元消元法（Gauss Elimination with Partial Pivoting）</a></span></li><li><span><a href="#全主元消元法（Gauss-Elimination-with-Complete-Pivoting）" data-toc-modified-id="全主元消元法（Gauss-Elimination-with-Complete-Pivoting）-4.1.3"><span class="toc-item-num">4.1.3&nbsp;&nbsp;</span>全主元消元法（Gauss Elimination with Complete Pivoting）</a></span></li><li><span><a href="#高斯-约旦消元法（Gauss-Jordan-Elimination）" data-toc-modified-id="高斯-约旦消元法（Gauss-Jordan-Elimination）-4.1.4"><span class="toc-item-num">4.1.4&nbsp;&nbsp;</span>高斯-约旦消元法（Gauss-Jordan Elimination）</a></span></li><li><span><a href="#消元法的python实现" data-toc-modified-id="消元法的python实现-4.1.5"><span class="toc-item-num">4.1.5&nbsp;&nbsp;</span>消元法的python实现</a></span></li></ul></li><li><span><a href="#矩阵分解法" data-toc-modified-id="矩阵分解法-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>矩阵分解法</a></span><ul class="toc-item"><li><span><a href="#高斯消元法与矩阵分解（Gauss-Elimination-as-Matrix-Decomposition）" data-toc-modified-id="高斯消元法与矩阵分解（Gauss-Elimination-as-Matrix-Decomposition）-4.2.1"><span class="toc-item-num">4.2.1&nbsp;&nbsp;</span>高斯消元法与矩阵分解（Gauss Elimination as Matrix Decomposition）</a></span></li><li><span><a href="#矩阵的LU分解（LU-decomposition-of-matrices）" data-toc-modified-id="矩阵的LU分解（LU-decomposition-of-matrices）-4.2.2"><span class="toc-item-num">4.2.2&nbsp;&nbsp;</span>矩阵的LU分解（LU decomposition of matrices）</a></span></li><li><span><a href="#LU分解法解线性方程组" data-toc-modified-id="LU分解法解线性方程组-4.2.3"><span class="toc-item-num">4.2.3&nbsp;&nbsp;</span>LU分解法解线性方程组</a></span></li><li><span><a href="#矩阵的PLU分解" data-toc-modified-id="矩阵的PLU分解-4.2.4"><span class="toc-item-num">4.2.4&nbsp;&nbsp;</span>矩阵的PLU分解</a></span></li><li><span><a href="#PLU分解法解线性方程组" data-toc-modified-id="PLU分解法解线性方程组-4.2.5"><span class="toc-item-num">4.2.5&nbsp;&nbsp;</span>PLU分解法解线性方程组</a></span></li><li><span><a href="#对称矩阵及对称正定矩阵的分解" data-toc-modified-id="对称矩阵及对称正定矩阵的分解-4.2.6"><span class="toc-item-num">4.2.6&nbsp;&nbsp;</span>对称矩阵及对称正定矩阵的分解</a></span></li><li><span><a href="#矩阵分解法的python实现" data-toc-modified-id="矩阵分解法的python实现-4.2.7"><span class="toc-item-num">4.2.7&nbsp;&nbsp;</span>矩阵分解法的python实现</a></span></li></ul></li><li><span><a href="#迭代法求线性方程组" data-toc-modified-id="迭代法求线性方程组-4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span>迭代法求线性方程组</a></span><ul class="toc-item"><li><span><a href="#迭代法的基本构造方法" data-toc-modified-id="迭代法的基本构造方法-4.3.1"><span class="toc-item-num">4.3.1&nbsp;&nbsp;</span>迭代法的基本构造方法</a></span></li><li><span><a href="#迭代法的收敛特性" data-toc-modified-id="迭代法的收敛特性-4.3.2"><span class="toc-item-num">4.3.2&nbsp;&nbsp;</span>迭代法的收敛特性</a></span></li><li><span><a href="#Gauss-Seidel迭代" data-toc-modified-id="Gauss-Seidel迭代-4.3.3"><span class="toc-item-num">4.3.3&nbsp;&nbsp;</span>Gauss-Seidel迭代</a></span></li><li><span><a href="#Jacobi迭代" data-toc-modified-id="Jacobi迭代-4.3.4"><span class="toc-item-num">4.3.4&nbsp;&nbsp;</span>Jacobi迭代</a></span></li><li><span><a href="#超松弛(SOR)迭代" data-toc-modified-id="超松弛(SOR)迭代-4.3.5"><span class="toc-item-num">4.3.5&nbsp;&nbsp;</span>超松弛(SOR)迭代</a></span></li></ul></li></ul></li><li><span><a href="#小结" data-toc-modified-id="小结-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>小结</a></span></li><li><span><a href="#思考和习题" data-toc-modified-id="思考和习题-6"><span class="toc-item-num">6&nbsp;&nbsp;</span>思考和习题</a></span></li></ul></div><div class="section" id="id1">
+<h2>序言<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>工程实践和科学研究中许多问题最终都使用线性方程组进行表示或者近似。</p>
+<p>一方面，线性化是我们认识世界的基本哲学。尽管我们对物理世界的认识已经非常深刻，构建了
+许多非线性的物理模型，但是在理论和数值上处理这些非线性模型，获得对应物理问题的内在性
+质任然是依靠在特定工作点处的线性化。例如，对单摆对应的动力系统而言
+$<span class="math notranslate nohighlight">\(
+   \ddot{\theta} = \frac{g}{l} \sin\theta
+\)</span><span class="math notranslate nohighlight">\(
+由于其非线性，获得其解析解比较困难。比较通行的做法是，在零点\)</span>\theta = 0<span class="math notranslate nohighlight">\(（该点是
+该系统的一个平衡）附近，对该动力系统进行线性化获得
+\)</span><span class="math notranslate nohighlight">\(
+   \ddot{\theta} = \frac{g}{l} \theta.
+\)</span>$
+这个方程即是我们非常熟悉的单摆方程。其周期，振动幅值等动力学信息能够很轻松的获得。</p>
+<p>另一方面，线性化是我们改造世界的基本方法。对于线性问题，我们目前已经发展出一套比较完善
+的理论，这对于我们在工程实践中解决问题非常有利。此外，由于工程实践问题很多受限于测量和
+加工误差等，只能够近似描述，线性化成为我们对这些工程实践问题进行研究的不二法门。</p>
+<p><img alt="image.png" src="images/truss_analysis_example.jpg" />
+<img alt="image.png" src="images/electrical-network-analysis_example.jpg" /></p>
+<p>实际上很多数值计算方法，最终也会涉及到线性方程组的求解问题：</p>
+<ul class="simple">
+<li><p>样条插值的<span class="math notranslate nohighlight">\(M\)</span>和<span class="math notranslate nohighlight">\(m\)</span>关系式；</p></li>
+<li><p>曲线拟合的法方程；</p></li>
+<li><p>方程组的<span class="math notranslate nohighlight">\(Newton\)</span>迭代；</p></li>
+<li><p>求解常微分方程组的隐式方法；</p></li>
+<li><p>求解偏微分方程的有限元，有限体积，有限差分等方法。</p></li>
+</ul>
+<p>这些线性方程组的系数矩阵大致分为两种；</p>
+<ul class="simple">
+<li><p>低阶稠密矩阵（如阶数不超过<span class="math notranslate nohighlight">\(150\)</span>的矩阵等）</p></li>
+<li><p>大型稀疏矩阵（即矩阵阶数高且零元素较多）</p></li>
+</ul>
+<p>低阶稠密矩阵一般使用直接法进行求解，而大型稀疏矩阵采用迭代法计算能够获得更高的效率。</p>
+</div>
+<div class="section" id="id2">
+<h2>线性代数基础<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>在进一步介绍线性方程组的解的直接法和迭代法之前，我们首先回顾总结一下线性代数的基础知识点。</p>
+<div class="section" id="id3">
+<h3>集合<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>数学上，集合是由一个或多个确定的具有某种性质的对象所构成的整体。构成集合的这些对象则称为该集合的元素。例如，全中国人的集合，它的元素就是每一个中国人。通常用大写字母如<span class="math notranslate nohighlight">\(A\)</span>，<span class="math notranslate nohighlight">\(B\)</span>，<span class="math notranslate nohighlight">\(S\)</span>，<span class="math notranslate nohighlight">\(T\)</span>等表示集合，而用小写字母如<span class="math notranslate nohighlight">\(a\)</span>，<span class="math notranslate nohighlight">\(b\)</span>，<span class="math notranslate nohighlight">\(x\)</span>，<span class="math notranslate nohighlight">\(y\)</span>等表示集合的元素。若<span class="math notranslate nohighlight">\(x\)</span>是集合<span class="math notranslate nohighlight">\(S\)</span>的元素，则称<span class="math notranslate nohighlight">\(x\)</span>属于<span class="math notranslate nohighlight">\(S\)</span>，记为<span class="math notranslate nohighlight">\(x \in S\)</span>。若<span class="math notranslate nohighlight">\(y\)</span>不是集合<span class="math notranslate nohighlight">\(S\)</span>的元素，则称<span class="math notranslate nohighlight">\(y\)</span>不属于<span class="math notranslate nohighlight">\(S\)</span>，记为<span class="math notranslate nohighlight">\(y \notin S\)</span>。</p>
+<p>集合中元素的数目称为集合的基数，集合A的基数记作<span class="math notranslate nohighlight">\(card(A)\)</span>。当其为有限大时，集合<span class="math notranslate nohighlight">\(A\)</span>称为有限集，反之则为无限集。一般的，把含有有限个元素的集合叫做有限集，含无限个元素的集合叫做无限集。</p>
+<ul class="simple">
+<li><p>有一类特殊的集合，它不包含任何元素，如<span class="math notranslate nohighlight">\(\{x| x\in R: x^2 +1=0\}\)</span> ，称之为空集，记为<span class="math notranslate nohighlight">\(\emptyset\)</span>。空集是个特殊的集合，它有2个特点：</p>
+<ul>
+<li><p>空集∅是任意一个非空集合的真子集。</p></li>
+<li><p>空集是任何一个集合的子集。</p></li>
+</ul>
+</li>
+<li><p>设<span class="math notranslate nohighlight">\(S\)</span>，<span class="math notranslate nohighlight">\(T\)</span>是两个集合，如果<span class="math notranslate nohighlight">\(S\)</span>的所有元素都属于<span class="math notranslate nohighlight">\(T\)</span> ，即<span class="math notranslate nohighlight">\(x \in S \Rightarrow x \in T\)</span>，则称<span class="math notranslate nohighlight">\(S\)</span>是<span class="math notranslate nohighlight">\(T\)</span>的子集，记为<span class="math notranslate nohighlight">\(S \subseteq T\)</span>。显然，对任何集合<span class="math notranslate nohighlight">\(S\)</span>，都有<span class="math notranslate nohighlight">\(S \subseteq S, \emptyset \subseteq S\)</span>。其中，符号<span class="math notranslate nohighlight">\(\subseteq\)</span>读作包含于，表示该符号左边的集合中的元素全部是该符号右边集合的元素。如果<span class="math notranslate nohighlight">\(S\)</span>是<span class="math notranslate nohighlight">\(T\)</span>的一个子集，即<span class="math notranslate nohighlight">\(S \subseteq T\)</span>，但在<span class="math notranslate nohighlight">\(T\)</span>中存在一个元素<span class="math notranslate nohighlight">\(x\)</span>不属于<span class="math notranslate nohighlight">\(S\)</span>，即<span class="math notranslate nohighlight">\(S \subset T\)</span>，则称<span class="math notranslate nohighlight">\(S\)</span>是<span class="math notranslate nohighlight">\(T\)</span>的一个真子集。</p></li>
+<li><p>交集是由属于<span class="math notranslate nohighlight">\(A\)</span>且属于<span class="math notranslate nohighlight">\(B\)</span>的相同元素组成的集合，记作<span class="math notranslate nohighlight">\(A \cap B\)</span>（或<span class="math notranslate nohighlight">\(B\cap A\)</span>），读作”A交B”（或”B交A”），即<span class="math notranslate nohighlight">\(A∩B=\{x|x \in A,\mbox{且}x \in B\}\)</span>。注意交集越交越少。若<span class="math notranslate nohighlight">\(A\)</span>包含<span class="math notranslate nohighlight">\(B\)</span>，则<span class="math notranslate nohighlight">\(A \cap B=B\)</span>。</p></li>
+<li><p>并集是由所有属于集合<span class="math notranslate nohighlight">\(A\)</span>或属于集合<span class="math notranslate nohighlight">\(B\)</span>的元素所组成的集合，记作<span class="math notranslate nohighlight">\(A \cup B\)</span>（或<span class="math notranslate nohighlight">\(B \cup A\)</span>），读作”A并B”（或”B并A”），即<span class="math notranslate nohighlight">\(A \cup B=\{x|x\in A,\mbox{或}x \in B\}\)</span>。注意并集越并越多，这与交集的情况正相反。</p></li>
+<li><p>补集又可分为相对补集和绝对补集。相对补集由属于A而不属于B的元素组成的集合，称为<span class="math notranslate nohighlight">\(B\)</span>关于<span class="math notranslate nohighlight">\(A\)</span>的相对补集，记作<span class="math notranslate nohighlight">\(A-B\)</span>或<span class="math notranslate nohighlight">\(A \backslash B\)</span>，即<span class="math notranslate nohighlight">\(A-B=\{x|x \in A，\mbox{且}x \notin B\}\)</span>。集合<span class="math notranslate nohighlight">\(A\)</span>关于全集合<span class="math notranslate nohighlight">\(U\)</span>的相对补集称作<span class="math notranslate nohighlight">\(A\)</span>的绝对补集，记作<span class="math notranslate nohighlight">\(A^\prime\)</span>或<span class="math notranslate nohighlight">\( \complement_U (A）\)</span>或<span class="math notranslate nohighlight">\(\sim A\)</span>。有<span class="math notranslate nohighlight">\(U^\prime= \emptyset\)</span>；<span class="math notranslate nohighlight">\(\emptyset^\prime = U\)</span>。</p></li>
+<li><p>设有集合<span class="math notranslate nohighlight">\(A\)</span>，由集合<span class="math notranslate nohighlight">\(A\)</span>所有子集组成的集合，称为集合<span class="math notranslate nohighlight">\(A\)</span>的幂集。对于幂集有定理如下：有限集<span class="math notranslate nohighlight">\(A\)</span>的幂集的基数等于<span class="math notranslate nohighlight">\(2\)</span>的有限集<span class="math notranslate nohighlight">\(A\)</span>的基数次幂。</p></li>
+</ul>
+<p>几种标准的数集： <strong>自然数</strong>,  <strong>整数</strong>, <strong>有理数</strong>, <strong>无理数</strong>, <strong>实数</strong>, 和 <strong>复数</strong>.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>集合名</p></th>
+<th class="head"><p>符号</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>自然数</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbb{N}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\mathbb{N}} = \{0, 1, 2, 3, 4, \cdots\}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>整数</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbb{Z}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\mathbb{Z}} = \mathbb{W} \cup \{-1, -2, -3, \cdots\}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>有理数</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbb{Q}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\mathbb{Q}} = \{\frac{p}{q} : p\in {\mathbb{Z}}, q\in {\mathbb{Z}} \backslash \{0\}\}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>无理数</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbb{I}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\mathbb{I}}\)</span>是由不能表示成整数之比的数组成的集合.</p></td>
+</tr>
+<tr class="row-even"><td><p>实数</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbb{R}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\mathbb{R}} = \mathbb{Q} \cup \mathbb{I}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>复数</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbb{C}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\mathbb{C}} = \{a + bi : a,b\in {\mathbb{R}}, i = \sqrt{-1}\}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>回顾!</strong> 令<span class="math notranslate nohighlight">\(S\)</span>表示所有满足<span class="math notranslate nohighlight">\(x^2 + y^2 = 1\)</span>的实数对<span class="math notranslate nohighlight">\((x,y)\)</span>构成的集合。利用集合的符号写出<span class="math notranslate nohighlight">\(S\)</span>。</p>
+<p><span class="math notranslate nohighlight">\(S = \{(x,y) : x,y \in {\mathbb{R}}, x^2 + y^2 = 1\}\)</span></p>
+</div>
+<div class="section" id="id4">
+<h3>矢量<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>集合<span class="math notranslate nohighlight">\({\mathbb{R}}^n\)</span>是所有实数<span class="math notranslate nohighlight">\(n\)</span>元组构成的集合，可表示为<span class="math notranslate nohighlight">\({\mathbb{R}}^n = \{(x_1, x_2, x_3, \cdots, x_n): x_1, x_2, x_3, \cdots, x_n \in {\mathbb{R}}\}\)</span>.</p>
+<p>以<span class="math notranslate nohighlight">\({\mathbb{R}}^3\)</span>为例，它表示了所有实数三元组，即<span class="math notranslate nohighlight">\((x,y,z)\)</span>，的集合，可以与三维空间中的点一一对应起来。</p>
+<p><span class="math notranslate nohighlight">\({\mathbb{R}}^n\)</span> 中的<strong>矢量</strong>是一个属于<span class="math notranslate nohighlight">\({\mathbb{R}}^n\)</span>的<span class="math notranslate nohighlight">\(n\)</span>元组。它有两种书写方式：行向量和列向量。<strong>行向量</strong>一般的表示方式为<span class="math notranslate nohighlight">\([x_1, x_2, x_3, \cdots, x_n]\)</span>，<strong>列向量</strong>一般的表示方式为<span class="math notranslate nohighlight">\([x_1, x_2, x_3, \cdots, x_n]^T\)</span>，这里的上标<span class="math notranslate nohighlight">\(T\)</span>表示转置。若未特别说明，<strong>矢量一般是指列矢量</strong>。一般我们还定义<strong>零矢量</strong> 为<span class="math notranslate nohighlight">\({\mathbb{R}}^n\)</span>中的全零<span class="math notranslate nohighlight">\(n\)</span>元组。</p>
+<p><strong>!例</strong> 利用python的numpy包创建行矢量和列矢量，并获得矢量的<strong>形状</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">vector_row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="n">vector_column</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> 
+                          <span class="p">[</span><span class="mi">2</span><span class="p">],</span> 
+                          <span class="p">[</span><span class="mi">3</span><span class="p">],</span> 
+                          <span class="p">[</span><span class="mi">4</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vector_row</span><span class="p">),</span> <span class="nb">print</span><span class="p">(</span><span class="n">vector_column</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vector_row</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vector_column</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">vrow</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
+<span class="n">vcol</span> <span class="o">=</span> <span class="n">vrow</span><span class="o">.</span><span class="n">T</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vrow</span><span class="p">),</span><span class="nb">print</span><span class="p">(</span><span class="n">vcol</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">vrow</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vcol</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1 -5  3  2  4]]
+[[1]
+ [2]
+ [3]
+ [4]]
+(1, 5)
+(4, 1)
+[1 2 3 4 5 6 7]
+[1 2 3 4 5 6 7]
+(7,)
+(7,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">vec_class</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vec_class</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">vec_class</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]],</span>
+    <span class="p">[[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">]],</span>
+    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span>
+<span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vec_class</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">vec_class</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]],</span>
+    <span class="p">[[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">]],</span>
+    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+<span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vec_class</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 4)
+(3, 3, 2)
+(3,)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vx/qqb0fxy10w7gw7s5kqcyx5cw0000gn/T/ipykernel_62711/1044323608.py:17: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray.
+  vec_class  = np.array([
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>! 注意</strong> 在numpy中，1维数组（array）和二维数组是有一些不一样的。二维数组可以进行转置获得行矢量和列矢量的转换，而一维数组虽然可以进行转置，但并未获得任何不同结果。</p>
+<p><strong>矢量加法</strong> 定义为两个被加矢量的对应分量的分别相加。例如，如果<span class="math notranslate nohighlight">\(v\)</span>和<span class="math notranslate nohighlight">\(w\)</span>是<span class="math notranslate nohighlight">\({\mathbb{R}}^n\)</span>中的两个矢量，那么<span class="math notranslate nohighlight">\(u = v + w\)</span>定义为<span class="math notranslate nohighlight">\(u_i = v_i + w_i,\ i = 1,2,\cdots, n\)</span>.</p>
+<p><strong>矢量数乘</strong> 表示一个矢量与一个<strong>标量</strong>(如<span class="math notranslate nohighlight">\({\mathbb{R}}\)</span>中的一个实数)的乘积，其定义为矢量的每个元素与标量的乘积。若<span class="math notranslate nohighlight">\(\alpha\)</span>是一个标量，<span class="math notranslate nohighlight">\(v\)</span>是一个矢量，则<span class="math notranslate nohighlight">\(u = \alpha v\)</span>定义为<span class="math notranslate nohighlight">\(u_i = \alpha v_i,\ i = 1,2,\cdots, n\)</span>.</p>
+<p><strong>！例!</strong> 证明 <span class="math notranslate nohighlight">\(a(v + w) = av + aw\)</span>。</p>
+<p><strong>矢量点乘</strong> 又称为两个矢量的内积，表示两个矢量<span class="math notranslate nohighlight">\(v\)</span>和<span class="math notranslate nohighlight">\(w\)</span>对应分量之间的乘积的和，记为<span class="math notranslate nohighlight">\(v \cdot w\)</span>。具体而言，对于<span class="math notranslate nohighlight">\({\mathbb{R}}^n\)</span>中的两个矢量<span class="math notranslate nohighlight">\(v\)</span>和<span class="math notranslate nohighlight">\(w\)</span>，<span class="math notranslate nohighlight">\(d = v\cdot w\)</span>定义为
+$<span class="math notranslate nohighlight">\(d = \sum_{i = 1}^{n} v_i w_i\)</span>$</p>
+<p><strong>矢量之间的夹角</strong>， <span class="math notranslate nohighlight">\(\theta\)</span>，定义为</p>
+<div class="math notranslate nohighlight">
+\[
+v \cdot w = \sqrt{v \cdot v} \sqrt{w \cdot w} \cos{\theta}
+\]</div>
+<p>如果两个矢量相互垂直，则矢量之间的夹角为<span class="math notranslate nohighlight">\(0\)</span>。</p>
+<p><strong>！例 ！</strong> 计算矢量 <span class="math notranslate nohighlight">\(v = [10, 9, 3]\)</span> 和 <span class="math notranslate nohighlight">\(w = [2, 5, 12]\)</span> 之间的夹角。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">npl</span>
+
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">]])</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">npl</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">npl</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">w</span><span class="p">))</span>
+<span class="c1"># print(np.dot(v,w))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.97992471]]
+[[101]]
+[[ 20  50 120]
+ [ 18  45 108]
+ [  6  15  36]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">npl</span>
+
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>101
+</pre></div>
+</div>
+</div>
+</div>
+<p>两个矢量<span class="math notranslate nohighlight">\(v\)</span>和<span class="math notranslate nohighlight">\(w\)</span> 的 <strong>矢量叉积</strong> 写作 <span class="math notranslate nohighlight">\(v \times w\)</span>，定义为 <span class="math notranslate nohighlight">\(v \times w = \mathbf{n} \sqrt{v \cdot v} \sqrt{w \cdot w} \sin\theta \)</span>。其中<span class="math notranslate nohighlight">\(\theta\)</span>是两个矢量<span class="math notranslate nohighlight">\(v\)</span>和<span class="math notranslate nohighlight">\(w\)</span>之间的夹角， <strong><span class="math notranslate nohighlight">\(n\)</span></strong> 是一个与<span class="math notranslate nohighlight">\(v\)</span>和<span class="math notranslate nohighlight">\(w\)</span>同时垂直的矢量。</p>
+<p><strong>！例！</strong> 给定矢量<span class="math notranslate nohighlight">\(v = [0, 2, 0]\)</span> 和 <span class="math notranslate nohighlight">\(w = [3, 0, 0]\)</span>, 计算<span class="math notranslate nohighlight">\(v\)</span>和<span class="math notranslate nohighlight">\(w\)</span> 的叉积。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0  0 -6]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>考虑<span class="math notranslate nohighlight">\(S\)</span>是一个定义了加法和数乘的集合，则<span class="math notranslate nohighlight">\(S\)</span>的<strong>线性组合</strong>定义为
+$<span class="math notranslate nohighlight">\(
+\sum \alpha_i s_i,
+\)</span><span class="math notranslate nohighlight">\(
+其中\)</span>\alpha_i<span class="math notranslate nohighlight">\(是任意实数，\)</span>s_i<span class="math notranslate nohighlight">\(是\)</span>S<span class="math notranslate nohighlight">\(的第\)</span>i<span class="math notranslate nohighlight">\(个元素。\)</span>\alpha_i<span class="math notranslate nohighlight">\(也称为\)</span>s_i$的<strong>系数</strong>。</p>
+<p>一个集合称为<strong>线性无关</strong> （<strong>linearly independent</strong>），如果其中的任何一个元素都不能表示为其他元素的线性组合。本课程中我们一般涉及矢量的线性无关。一个矢量的集合如果不是线性无关，则称为线性相关。</p>
+<p><strong>！ 例 ！</strong> 给定行矢量 <span class="math notranslate nohighlight">\(v = [0, 3, 2]\)</span>，<span class="math notranslate nohighlight">\(w = [4, 1, 1]\)</span>，和 <span class="math notranslate nohighlight">\(u = [0, -2, 0]\)</span>，将矢量<span class="math notranslate nohighlight">\(x = [-8, -1, 4]\)</span>表示为<span class="math notranslate nohighlight">\(v\)</span>， <span class="math notranslate nohighlight">\(w\)</span>，和 <span class="math notranslate nohighlight">\(u\)</span>的线性组合。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">u</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-8 -1  4]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>！ 例 ！</strong> 确定以下矢量是否线性无关：<span class="math notranslate nohighlight">\(v = [1, 1, 0]\)</span>， <span class="math notranslate nohighlight">\(w = [1, 0, 0]\)</span>，和<span class="math notranslate nohighlight">\(u = [0, 0, 1]\)</span>.</p>
+<p>Clearly <span class="math notranslate nohighlight">\(u\)</span> is linearly independent from <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> because only <span class="math notranslate nohighlight">\(u\)</span> has a nonzero third element. The vectors <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> are also linearly independent because only <span class="math notranslate nohighlight">\(v\)</span> has a nonzero second element. Therefore, <span class="math notranslate nohighlight">\(v, w\)</span>, and <span class="math notranslate nohighlight">\(u\)</span> are linearly independent.</p>
+</div>
+<div class="section" id="id5">
+<h3>矩阵<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>一个<span class="math notranslate nohighlight">\({m} \times {n}\)</span> <strong>矩阵</strong>是一个<span class="math notranslate nohighlight">\(m\)</span>行<span class="math notranslate nohighlight">\(n\)</span>列的矩形数据表。一般用<span class="math notranslate nohighlight">\(\mathbb{R}^{m \times n}\)</span>表示全部<span class="math notranslate nohighlight">\({m} \times {n}\)</span>实矩阵的矢量空间，用<span class="math notranslate nohighlight">\(\mathbb{C}^{m \times n}\)</span>表示全部<span class="math notranslate nohighlight">\({m} \times {n}\)</span>复矩阵的矢量空间。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{A} \in \mathbb{R}^{m \times n} \Leftrightarrow \mathbf{A} = (a_{ij}) = \begin{pmatrix}
+    a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+    a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\
+    \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+    a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn} \\
+\end{pmatrix}
+\end{split}\]</div>
+<div class="section" id="id6">
+<h4>矩阵的基本运算<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>矩阵加法</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+   \mathbf{C} = \mathbf{A}  +  \mathbf{B},\quad c_{ij} = a_{ij} + b_{ij},\quad \mathbf{A},\ \mathbf{B},\ \mathbf{C} \in \mathbb{R}^{m \times n}
+\]</div>
+<ul class="simple">
+<li><p>矩阵与标量的乘法</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+   \mathbf{C} = \alpha \mathbf{A},\quad c_{ij} = \alpha a_{ij}
+\]</div>
+<ul class="simple">
+<li><p>矩阵与矩阵的乘法</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+   \mathbf{C} = \mathbf{A} \mathbf{B},\quad c_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj},\quad \mathbf{A}\in \mathbb{R}^{m \times n},\ \mathbf{B}\in \mathbb{R}^{n \times p},\ \mathbf{C} \in \mathbb{R}^{m \times p}
+\]</div>
+<ul class="simple">
+<li><p>矩阵的转置</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+   \mathbf{A} \in \mathbb{R}^{m \times n},\quad \mathbf{C} = \mathbf{A}^T ,\quad c_{ij} = a_{ji}
+\]</div>
+<ul class="simple">
+<li><p>单位矩阵</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{I} = \begin{pmatrix}
+       1   &amp;    0   &amp; \cdots &amp;    0    \\
+       0   &amp;    1    &amp; \cdots &amp;    0    \\
+    \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+       0   &amp;    0   &amp; \cdots &amp;    1    \\
+\end{pmatrix}\end{split}\]</div>
+<ul class="simple">
+<li><p>非奇异矩阵</p></li>
+</ul>
+<p>设<span class="math notranslate nohighlight">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>，<span class="math notranslate nohighlight">\(\mathbf{B} \in \mathbb{R}^{n \times n}\)</span>。如果<span class="math notranslate nohighlight">\(\mathbf{A} \mathbf{B} = \mathbf{B} \mathbf{A} = \mathbf{I}\)</span>，则称<span class="math notranslate nohighlight">\(\mathbf{B}\)</span>是<span class="math notranslate nohighlight">\(\mathbf{A}\)</span>的<strong>逆矩阵</strong>，记为<span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span>，且<span class="math notranslate nohighlight">\((\mathbf{A}^{-1})^T = (\mathbf{A}^T)^{-1}\)</span>。</p>
+<p>如果<span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span>存在，则称<span class="math notranslate nohighlight">\(\mathbf{A}\)</span>为<strong>非奇异矩阵</strong>。如果<span class="math notranslate nohighlight">\(\mathbf{A},\mathbf{B} \in \mathbb{R}^{n \times n}\)</span>均为非奇异矩阵，则<span class="math notranslate nohighlight">\((\mathbf{A}\mathbf{B})^{-1} = \mathbf{B}^{-1}\mathbf{A}^{-1}\)</span>。</p>
+<ul class="simple">
+<li><p>矩阵的行列式</p></li>
+</ul>
+<p>设<span class="math notranslate nohighlight">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>，则<span class="math notranslate nohighlight">\(\mathbf{A}\)</span>的行列式可按任一行或一列展开，即
+$<span class="math notranslate nohighlight">\(
+det(\mathbf{A}) = \sum_{j=1}^{n} a_{ij}A_{ij},\quad i=1,2,\cdots, n,
+\)</span><span class="math notranslate nohighlight">\(
+其中\)</span>A_{ij}<span class="math notranslate nohighlight">\(为\)</span>a_{ij}<span class="math notranslate nohighlight">\(的代数余子式，\)</span>A_{ij} = (-1)^{i+j} M_{ij}<span class="math notranslate nohighlight">\(，\)</span>M_{ij}<span class="math notranslate nohighlight">\(为元素\)</span>a_{ij}$的余子式。</p>
+<p>在<span class="math notranslate nohighlight">\(n\)</span>阶行列式中，划去元<span class="math notranslate nohighlight">\(a_{ij}\)</span>所在的第<span class="math notranslate nohighlight">\(i\)</span>行与第<span class="math notranslate nohighlight">\(j\)</span>列的元，剩下的元不改变原来的顺序所构成的<span class="math notranslate nohighlight">\(n-1\)</span>阶行列式称为元<span class="math notranslate nohighlight">\(a_{ij}\)</span>的余子式。</p>
+<p><strong>! 例 !</strong> Let the Python matrices <span class="math notranslate nohighlight">\(P = [[1, 7], [2, 3], [5, 0]]\)</span> and <span class="math notranslate nohighlight">\(Q = [[2, 6, 3, 1], [1, 2, 3, 4]]\)</span>. Compute the matrix product of <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span>. Show that the product of <span class="math notranslate nohighlight">\(Q\)</span> and <span class="math notranslate nohighlight">\(P\)</span> will produce an error.
+$<span class="math notranslate nohighlight">\(
+  P = \begin{pmatrix}
+      1 &amp; 7 \\
+      2 &amp; 3 \\
+      5 &amp; 0 \\
+  \end{pmatrix},\quad
+  Q = \begin{pmatrix}
+      2 &amp; 6 &amp; 3 &amp; 1 \\
+      1 &amp; 2 &amp; 3 &amp; 4 \\
+  \end{pmatrix}
+\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">))</span>
+<span class="c1"># np.dot(Q, P)</span>
+<span class="n">P</span><span class="o">*</span><span class="n">Q</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 7]
+ [2 3]
+ [5 0]]
+[[2 6 3 1]
+ [1 2 3 4]]
+[[ 9 20 24 29]
+ [ 7 18 15 14]
+ [10 30 15  5]]
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">Input In [7],</span> in <span class="ni">&lt;cell line: 7&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># np.dot(Q, P)</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">P</span><span class="o">*</span><span class="n">Q</span>
+
+<span class="ne">ValueError</span>: operands could not be broadcast together with shapes (3,2) (2,4) 
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>TRY IT!</strong> Use Python to find the determinant of the matrix <span class="math notranslate nohighlight">\(M = [[0, 2, 1, 3], [3, 2, 8, 1], [1, 0, 0, 3], [0, 3, 2, 1]]\)</span>. Use the <em>np.eye</em> function to produce a <span class="math notranslate nohighlight">\({4} \times {4}\)</span> identity matrix, <span class="math notranslate nohighlight">\(I\)</span>. Multiply <span class="math notranslate nohighlight">\(M\)</span> by <span class="math notranslate nohighlight">\(I\)</span> to show that the result is <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">npl</span>
+
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> 
+             <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> 
+             <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;M:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Determinant: </span><span class="si">%.1f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">npl</span>.det(M))
+<span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;I:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">I</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;M*I:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">I</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>M:
+ [[0 2 1 3]
+ [3 2 8 1]
+ [1 0 0 3]
+ [0 3 2 1]]
+Determinant: -38.0
+I:
+ [[1. 0. 0. 0.]
+ [0. 1. 0. 0.]
+ [0. 0. 1. 0.]
+ [0. 0. 0. 1.]]
+M*I:
+ [[0. 2. 1. 3.]
+ [3. 2. 8. 1.]
+ [1. 0. 0. 3.]
+ [0. 3. 2. 1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>! 例 !</strong> The matrix <span class="math notranslate nohighlight">\(M\)</span> (in the previous example) has a nonzero determinant. Compute the inverse of <span class="math notranslate nohighlight">\(M\)</span>. Show that the matrix <span class="math notranslate nohighlight">\(P = [[0, 1, 0], [0, 0, 0], [1, 0, 1]]\)</span> has a determinant value of 0 and therefore has no inverse.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Inv M:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;det(p):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">det</span><span class="p">(</span><span class="n">P</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inv M:
+ [[-1.57894737 -0.07894737  1.23684211  1.10526316]
+ [-0.63157895 -0.13157895  0.39473684  0.84210526]
+ [ 0.68421053  0.18421053 -0.55263158 -0.57894737]
+ [ 0.52631579  0.02631579 -0.07894737 -0.36842105]]
+det(p):
+ 0.0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>线性变换<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>对于矢量<span class="math notranslate nohighlight">\(x\)</span>和<span class="math notranslate nohighlight">\(y\)</span>，以及标量<span class="math notranslate nohighlight">\(a\)</span>和<span class="math notranslate nohighlight">\(b\)</span>而言，函数，<span class="math notranslate nohighlight">\(F\)</span>，称为<strong>线性变换</strong>，如果它满足
+$<span class="math notranslate nohighlight">\(
+F(a x + by) = aF(x) + bF(y)
+\)</span>$</p>
+<p>对于一个<span class="math notranslate nohighlight">\({m} \times {n}\)</span>的矩阵<span class="math notranslate nohighlight">\(A\)</span>而言，它可以看作是一个线性变换，讲一个<span class="math notranslate nohighlight">\({n} \times {1}\)</span>的矢量<span class="math notranslate nohighlight">\(v\)</span>通过矩阵乘法变换为一个<span class="math notranslate nohighlight">\({m} \times {1}\)</span>的矢量。</p>
+<p>对于一个<span class="math notranslate nohighlight">\({m} \times {n}\)</span>的矩阵<span class="math notranslate nohighlight">\(A\)</span>而言，有两个重要的关联空间：<span class="math notranslate nohighlight">\({\mathbb{R}}^n\)</span>和<span class="math notranslate nohighlight">\({\mathbb{R}}^m\)</span>。<span class="math notranslate nohighlight">\(A\)</span>的<strong>定义域</strong>是<span class="math notranslate nohighlight">\({\mathbb{R}}^n\)</span>的子空间，是所有能够与矩阵<span class="math notranslate nohighlight">\(A\)</span>进行乘积的矢量的集合。<span class="math notranslate nohighlight">\(A\)</span>的<strong>值域</strong>是<span class="math notranslate nohighlight">\({\mathbb{R}}^m\)</span>的子空间，是所有能够表示成<span class="math notranslate nohighlight">\(y=Ax\)</span>的矢量<span class="math notranslate nohighlight">\(y\)</span>的集合，其中<span class="math notranslate nohighlight">\(x\in{\mathbb{R}}^n\)</span>。</p>
+<p><span class="math notranslate nohighlight">\(A\)</span>的<strong>值域</strong>可以表示为<span class="math notranslate nohighlight">\(\mathcal{R}(\mathbf{A})\)</span>，其中 <span class="math notranslate nohighlight">\(\mathcal{R}(\mathbf{A}) = \{y \in {\mathbb{R}}^m: Ax = y\}\)</span>。值域的另一种理解方式是矩阵<span class="math notranslate nohighlight">\(A\)</span>中所有列矢量的所有线性组合的集合。</p>
+<p><strong>矩阵<span class="math notranslate nohighlight">\(A\)</span>的零空间</strong> 定义为<span class="math notranslate nohighlight">\(\mathcal{N}(\mathbf{A}) = \{x \in {\mathbb{R}}^n: Ax = 0_m\}\)</span>，是<span class="math notranslate nohighlight">\(A\)</span>的<strong>定义域</strong>的子空间，其中<span class="math notranslate nohighlight">\(0_m\)</span>是<strong>零矢量</strong> (所有分量都为<span class="math notranslate nohighlight">\(0\)</span>).</p>
+<p><strong>! 例 !</strong> 设<span class="math notranslate nohighlight">\(A = [[1, 0, 0], [0, 1, 0], [0, 0, 0]]\)</span>，令<span class="math notranslate nohighlight">\(A\)</span>的定义域为<span class="math notranslate nohighlight">\({\mathbb{R}}^3\)</span>. 求<span class="math notranslate nohighlight">\(A\)</span>的值域和零空间.</p>
+<p>Let <span class="math notranslate nohighlight">\(v = [x,y,z]\)</span> be a vector in <span class="math notranslate nohighlight">\({\mathbb{R}}^3\)</span>. Then <span class="math notranslate nohighlight">\(u = Av\)</span> is the vector <span class="math notranslate nohighlight">\(u = [x,y,0]\)</span>. Since <span class="math notranslate nohighlight">\(x,y\in {\mathbb{R}}\)</span>, the range of <span class="math notranslate nohighlight">\(A\)</span> is the <span class="math notranslate nohighlight">\(x\)</span>-<span class="math notranslate nohighlight">\(y\)</span> plane at <span class="math notranslate nohighlight">\(z = 0\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(v = [0,0,z]\)</span> for <span class="math notranslate nohighlight">\(z\in {\mathbb{R}}\)</span>. Then <span class="math notranslate nohighlight">\(u = Av\)</span> is the vector <span class="math notranslate nohighlight">\(u = [0, 0, 0]\)</span>. Therefore, the nullspace of <span class="math notranslate nohighlight">\(A\)</span> is the <span class="math notranslate nohighlight">\(z\)</span>-axis (i.e., the set of vectors <span class="math notranslate nohighlight">\([0,0,z]\)</span> <span class="math notranslate nohighlight">\(z\in {\mathbb{R}}\)</span>).</p>
+<p>Therefore, this linear transformation “flattens” any <span class="math notranslate nohighlight">\(z\)</span>-component from a vector.</p>
+</div>
+<div class="section" id="id8">
+<h3>矢量空间、矢量与范数<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h4>矢量空间<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<p>矢量空间的定义必须依赖一个<strong>域<span class="math notranslate nohighlight">\(\mathbb{F}\)</span> (field)</strong> ．简单来说，域就是能进行加减乘除的对象的一个集合，比如实数域域<span class="math notranslate nohighlight">\(\mathbb{R}\)</span>和复数域域<span class="math notranslate nohighlight">\(\mathbb{C}\)</span>．这个域本身被称为该矢量空间的<strong>标量域（scalar field）<strong>或</strong>标域</strong>，它的元素被称为矢量空间的标量（scalar），它们不是矢量空间的元素，但是可以用来和矢量进行数乘．那么，我们就说矢量空间是 “域<span class="math notranslate nohighlight">\(\mathbb{F}\)</span>上的”．矢量空间选择的域几乎都是<span class="math notranslate nohighlight">\(\mathbb{R}\)</span>或<span class="math notranslate nohighlight">\(\mathbb{C}\)</span>，即讨论的是实数（或复数）域上的矢量空间．所以即使我们不了解域的具体定义也没关系，只要知道实数和复数是两种常见的域就足够了．</p>
+<p><strong>!定义 1!</strong>　<font color='red'>矢量空间</font> 标量域<span class="math notranslate nohighlight">\(\mathbb{F}\)</span>上的矢量空间定义了矢量的集合<span class="math notranslate nohighlight">\(X\)</span>、两个矢量间的加法运算<span class="math notranslate nohighlight">\(X \times X \to X\)</span>以及标量和矢量间的数乘运算<span class="math notranslate nohighlight">\(F \times X \to X\)</span>。令矢量<span class="math notranslate nohighlight">\(u,v,w \in X\)</span>，标量<span class="math notranslate nohighlight">\(\lambda, \mu \in F\)</span>，矢量加法记为<span class="math notranslate nohighlight">\(u \bigoplus v\)</span>，数乘记为<span class="math notranslate nohighlight">\(\lambda \bigodot u\)</span>．两种运算必须满足以下性质：</p>
+<ul class="simple">
+<li><p>加法运算</p>
+<ol class="simple">
+<li><p>满足加法交换律  <span class="math notranslate nohighlight">\(u \bigoplus v = v \bigoplus u\)</span>．</p></li>
+<li><p>满足加法结合律  <span class="math notranslate nohighlight">\((u \bigoplus v ) \bigoplus w = u \bigoplus ( v \bigoplus w )\)</span> ．</p></li>
+<li><p>存在零矢量，使得 <span class="math notranslate nohighlight">\(v \bigoplus 0 = v\)</span> ．</p></li>
+<li><p>空间中任意矢量<span class="math notranslate nohighlight">\(v\)</span>  存在逆矢量  <span class="math notranslate nohighlight">\(− v\)</span> ，使得  <span class="math notranslate nohighlight">\(v \bigoplus ( − v ) = 0\)</span> ．</p></li>
+</ol>
+</li>
+<li><p>数乘运算</p>
+<ol class="simple">
+<li><p>乘法分配律 <span class="math notranslate nohighlight">\(\lambda \bigodot ( u \bigoplus v ) = (\lambda \bigodot u) \bigoplus (\lambda \bigodot v)\)</span></p></li>
+<li><p>乘法分配律 <span class="math notranslate nohighlight">\(( \lambda + \mu ) v = (\lambda \bigodot v) \bigoplus (\mu \bigodot v)\)</span></p></li>
+<li><p>乘法结合律 <span class="math notranslate nohighlight">\(\lambda \bigodot  ( \mu \bigodot v ) = (\lambda \cdot \mu) \bigodot v\)</span></p></li>
+<li><p>存在数量<span class="math notranslate nohighlight">\(1\)</span>， 使得 <span class="math notranslate nohighlight">\(1\bigodot u = u\)</span></p></li>
+</ol>
+</li>
+</ul>
+<p>注意，上述式子重，<span class="math notranslate nohighlight">\(+\)</span>和<span class="math notranslate nohighlight">\(\cdot\)</span> 是定义在域<span class="math notranslate nohighlight">\(\mathbb{F}\)</span>上的四则运算。</p>
+<p>矢量空间中的元素之间的线性组合所得到的元素仍然属于矢量空间。因此，矢量空间通常也称为线性空间。</p>
+<p>矢量空间的定义非常抽象，实际上工程中经常遇到的数学对象多半可以看作是矢量空间的元素。</p>
+<ul class="simple">
+<li><p>一般定义里的矢量</p></li>
+<li><p>矩阵</p></li>
+<li><p>。。。</p></li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h4>矢量空间的范数<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<p><strong>范数(norm)</strong> 可以看作几何矢量的模长在一般矢量空间上的拓展．</p>
+<p><strong>!定义 2!</strong>  设<span class="math notranslate nohighlight">\(X\)</span>是实数或复数域上的矢量空间。<span class="math notranslate nohighlight">\(X\)</span>上的范数是满足如下条件的非负函数<span class="math notranslate nohighlight">\(\Vert \cdot \Vert\)</span>:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Vert x \Vert \geq 0\)</span>(正定)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Vert x \Vert = 0\)</span> 当且仅当<span class="math notranslate nohighlight">\(x=0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\Vert \lambda x \Vert = \left| \lambda \right| \Vert x \Vert\)</span>，对任意<span class="math notranslate nohighlight">\(\lambda \in \mathbb{F}\)</span>，<span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\Vert x_1 + x_2 \Vert \leq \Vert x_1 \Vert + \Vert x_2 \Vert\)</span>（三角不等式）</p></li>
+</ol>
+<p>如果一个矢量空间中定义了范数，我们就把它称为<strong>赋范空间（normed space）</strong>．</p>
+<p><span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>空间上常见的向量范数：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(1\)</span>-范数 (<span class="math notranslate nohighlight">\(L_1\)</span>范数)：</p></li>
+</ul>
+<p>\begin{equation}
+\Vert x \Vert_1 = \sum_{i=1}^n |x_i| = |x_1| + |x_2| + \cdots + |x_n|
+\end{equation}</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(2\)</span>-范数 (<span class="math notranslate nohighlight">\(L_2\)</span>范数)：</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\Vert x \Vert_2 = \left( \sum_{i=1}^n x_i^2 \right)^{1/2} = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2}  \]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p\)</span>-范数 (<span class="math notranslate nohighlight">\(L_p\)</span>范数)：</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\Vert x \Vert_p = \left( \sum_{i=1}^n |x_i|^p \right)^{1/p}  = \sqrt[p]{|x_1|^p + |x_2|^p + \cdots + |x_n|^p} \]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\infty\)</span>-范数（也称为最大范数）(<span class="math notranslate nohighlight">\(L_\infty\)</span>范数)：</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\Vert x \Vert_\infty = \max_{1 \leq i \leq n} |x_i| \]</div>
+<p><strong>! 例 !</strong> Transpose the row vector we defined above into a column vector and calculate the <span class="math notranslate nohighlight">\(L_1\)</span>, <span class="math notranslate nohighlight">\(L_2\)</span>, and <span class="math notranslate nohighlight">\(L_\infty\)</span> norm of it. Verify that the <span class="math notranslate nohighlight">\(L_\infty\)</span> norm of a vector is equivalent to the maximum value of the elements in the vector.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
+
+<span class="n">vector_row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">]])</span>
+<span class="n">new_vector</span> <span class="o">=</span> <span class="n">vector_row</span><span class="o">.</span><span class="n">T</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">new_vector</span><span class="p">)</span>
+<span class="n">norm_1</span>   <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">new_vector</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">norm_2</span>   <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">new_vector</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">norm_inf</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">new_vector</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L_1 is: </span><span class="si">%.1f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">norm_1</span>)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L_2 is: </span><span class="si">%.1f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">norm_2</span>)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L_inf is: </span><span class="si">%.1f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">norm_inf</span>)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1]
+ [-5]
+ [ 3]
+ [ 2]
+ [ 4]
+ [ 9]
+ [ 8]
+ [ 7]]
+L_1 is: 39.0
+L_2 is: 15.8
+L_inf is: 9.0
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>范数的性质</strong>：</p>
+<ul class="simple">
+<li><p>连续性：设<span class="math notranslate nohighlight">\(f\)</span>是<span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>上的任一向量范数，则<span class="math notranslate nohighlight">\(f\)</span>关于<span class="math notranslate nohighlight">\(x\)</span>的每个分量是连续函数。</p></li>
+<li><p>等价性：设<span class="math notranslate nohighlight">\(\Vert \cdot \Vert_s\)</span>和<span class="math notranslate nohighlight">\(\Vert \cdot \Vert_s\)</span>是<span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>上的任意两个范数，则存在常数<span class="math notranslate nohighlight">\(c_1\)</span>和<span class="math notranslate nohighlight">\(c_2\)</span>，使得对于任意的<span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>有
+\begin{equation*}
+c_1 \Vert x \Vert_s \leq \Vert x \Vert_t \leq c_2 \Vert x \Vert_s
+\end{equation*}</p></li>
+<li><p><span class="math notranslate nohighlight">\(Cauchy-Schwarz\)</span>不等式：
+$<span class="math notranslate nohighlight">\(|(x,y)| \leq \Vert x \Vert_2 \cdot \Vert y \Vert_2\)</span>$</p></li>
+</ul>
+<p><strong>！例！</strong> 已知矢量<span class="math notranslate nohighlight">\(v= [ 0.1, 0.3, 0.5, 0.8 ]^T\)</span>，求<span class="math notranslate nohighlight">\(\Vert v \Vert_1\)</span>，<span class="math notranslate nohighlight">\(\Vert v \Vert_2\)</span>，<span class="math notranslate nohighlight">\(\Vert v \Vert_4\)</span>，和<span class="math notranslate nohighlight">\(\Vert v \Vert_\infty\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="n">new_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_vector</span><span class="p">)</span>
+<span class="n">norm_1</span>   <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">new_vector</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">norm_2</span>   <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">new_vector</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">norm_4</span>   <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">new_vector</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">norm_inf</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">new_vector</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L_1 is: </span><span class="si">%.4f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">norm_1</span>)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L_2 is: </span><span class="si">%.4f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">norm_2</span>)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L_4 is: </span><span class="si">%.4f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">norm_4</span>)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L_inf is: </span><span class="si">%.4f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">norm_inf</span>)
+<span class="nb">ord</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">new_vector</span><span class="p">)</span><span class="o">**</span><span class="nb">ord</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="nb">ord</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.1 0.3 0.5 0.8]
+L_1 is: 1.7000
+L_2 is: 0.9950
+L_4 is: 0.8325
+L_inf is: 0.8000
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8324883155696224
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h4>矩阵的范数<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<p>矩阵的范数一般有三种定义方法：一种是将矩阵空间看作是矢量空间，利用矢量空间的范数定义来定义矩阵的范数；另一种是根据矩阵的运算特性，直接定义矩阵范数满足的条件；还有一种定义方式是利用矩阵与普通矢量的乘积来依靠矢量范数的定义导出矩阵范数。</p>
+<p><strong>1. 将矩阵空间看作是矢量空间，定义范数</strong></p>
+<p>矢量<span class="math notranslate nohighlight">\(1\)</span>-范数：
+$<span class="math notranslate nohighlight">\(\Vert A \Vert_{1} = \sum_i^m \sum_j^n |a_{ij}|^p\)</span>$</p>
+<p><span class="math notranslate nohighlight">\(F\)</span>-范数(<span class="math notranslate nohighlight">\(Frobenious\)</span>范数)：
+\begin{equation}
+\Vert A \Vert_F = \left( \sum_{i=1}^n \sum_{i=1}^n a_{ij}^2  \right)^{\frac{1}{2}}
+\end{equation}</p>
+<p>矢量<span class="math notranslate nohighlight">\(p\)</span>-范数：
+$<span class="math notranslate nohighlight">\(\Vert A \Vert_{p} = \sqrt[p]{(\sum_i^m \sum_j^n |a_{ij}|^p)}\)</span>$</p>
+<p>矢量<span class="math notranslate nohighlight">\(\infty\)</span>-范数：
+$<span class="math notranslate nohighlight">\(\Vert A \Vert_{\infty} = \max_{i,j}|a_{ij}|\)</span>$</p>
+<p><strong>2. 直接定义矩阵的范数</strong></p>
+<p>设<span class="math notranslate nohighlight">\(f\)</span>是<span class="math notranslate nohighlight">\(\mathbb{R}^{n \times n} \to \mathbb{R}\)</span>，若<span class="math notranslate nohighlight">\(f\)</span>满足</p>
+<ul class="simple">
+<li><p><font color="blud">正定性</font>：<span class="math notranslate nohighlight">\(f(A) \leq 0\)</span>，<span class="math notranslate nohighlight">\(\forall A \in \mathbb{R}^{n \times n}\)</span>，且等号成立当且仅当<span class="math notranslate nohighlight">\(A=0\)</span></p></li>
+<li><p><font color="blud">齐次性</font>：<span class="math notranslate nohighlight">\(f(\alpha A) = |\alpha| \cdot f(A)\)</span>，<span class="math notranslate nohighlight">\(\forall A \in \mathbb{R}^{n \times n}\)</span>，<span class="math notranslate nohighlight">\(\forall \alpha \in \mathbb{R}\)</span></p></li>
+<li><p><font color="blud">三角不等式</font>：<span class="math notranslate nohighlight">\(f(A+B) \leq f(A) + f(B)\)</span></p></li>
+<li><p><font color="blud">相容性</font>：<span class="math notranslate nohighlight">\(f(AB) \leq f(A)  f(B)\)</span></p></li>
+</ul>
+<p>则称<span class="math notranslate nohighlight">\(f\)</span>为<span class="math notranslate nohighlight">\(\mathbb{R}^{n \times n} \to \mathbb{R}\)</span>上的（矩阵）范数，通常记为<span class="math notranslate nohighlight">\(\Vert \cdot \Vert\)</span>。</p>
+<p>前述定义的<span class="math notranslate nohighlight">\(Frobenious\)</span>范数就是<span class="math notranslate nohighlight">\(\mathbb{R}^{n \times n}\)</span>上的一个矩阵范数</p>
+<p><strong>3. 基于矢量范数导出的矩阵范数</strong></p>
+<p>设<span class="math notranslate nohighlight">\(x \in \mathbb{R}^{n}\)</span>， <span class="math notranslate nohighlight">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>，给出一种矢量范数<span class="math notranslate nohighlight">\(\Vert x \Vert_\nu\)</span>，相应地可以定义一个矩阵的非负函数</p>
+<p>\begin{equation}
+\Vert A \Vert_\nu = \sup_{x\in \mathbb{R}^n,\ x \neq 0} \frac{\Vert Ax \Vert_\nu}{\Vert x \Vert_\nu} = \max_{\Vert x \Vert_\nu = 1 }\Vert Ax \Vert_\nu
+\end{equation}</p>
+<p>可以验证，<span class="math notranslate nohighlight">\(\Vert A \Vert_\nu\)</span>满足上面的矩阵范数的直接定义，所以<span class="math notranslate nohighlight">\(\Vert A \Vert_\nu\)</span>称为<span class="math notranslate nohighlight">\(\mathbb{R}^{n \times n}\)</span>上矩阵的范数，称为<span class="math notranslate nohighlight">\(\mathbf{A}\)</span>的<strong>算子范数</strong>，也称为<strong>从属范数</strong>，<strong>导出范数</strong>。</p>
+<p><strong>4. 常见的算子范数</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(1\)</span>-范数(列范数)：
+\begin{equation}
+\Vert A \Vert_1 = \max_{1 \leq j \leq n } \sum_{i=1}^n |a_{ij}|
+\end{equation}</p></li>
+<li><p><span class="math notranslate nohighlight">\(2\)</span>-范数(谱范数)：
+\begin{equation}
+\Vert A \Vert_2 = \sqrt{\rho(A^T A)} = \sqrt{\lambda_{max}(A^T A)}
+\end{equation}</p></li>
+<li><p><span class="math notranslate nohighlight">\(\infty\)</span>-范数(行范数)：
+\begin{equation}
+\Vert A \Vert_\infty = \max_{1 \leq i \leq n } \sum_{j=1}^n |a_{ij}|
+\end{equation}</p></li>
+</ul>
+<p><strong>！例！</strong> 设<span class="math notranslate nohighlight">\(A = \begin{bmatrix}
+            1   &amp; -2 \\
+            -3  &amp;  4 \\
+        \end{bmatrix}\)</span>
+计算<span class="math notranslate nohighlight">\(\Vert A \Vert_1\)</span>，<span class="math notranslate nohighlight">\(\Vert A \Vert_2\)</span>，<span class="math notranslate nohighlight">\(\Vert A \Vert_\infty\)</span>，<span class="math notranslate nohighlight">\(\Vert A \Vert_F\)</span>。</p>
+<p><strong>！解！</strong></p>
+<p>\begin{equation*}
+\Vert A \Vert_1 = \max { |1|+|-2|, |-3|+|4| } = 7
+\end{equation*}</p>
+<p>\begin{equation*}
+\Vert A \Vert_2 = \sqrt{ \max { 15 + \sqrt{221}, 15 - \sqrt{221} } } = \sqrt{15 + \sqrt{221}} \approx 5.46
+\end{equation*}</p>
+<p>\begin{equation*}
+\Vert A \Vert_\infty = \max { |1|+|-3|, |-2|+|4| } = 6
+\end{equation*}</p>
+<p>\begin{equation*}
+\Vert A \Vert_F = \sqrt{1^2 + (-2)^2 + (-3)^2 + (4)^2 } = \sqrt{30} \approx 5.477
+\end{equation*}</p>
+<p><strong>5. 矩阵范数的性质</strong></p>
+<ul class="simple">
+<li><p>连续性：设<span class="math notranslate nohighlight">\(f\)</span>是<span class="math notranslate nohighlight">\(\mathbb{R}^{n \times n}\)</span>上的任一矩阵范数，则<span class="math notranslate nohighlight">\(f\)</span>关于<span class="math notranslate nohighlight">\(A\)</span>的每个分量是连续函数。</p></li>
+</ul>
+<ul class="simple">
+<li><p>等价性：设<span class="math notranslate nohighlight">\(\Vert \cdot \Vert_s\)</span>和<span class="math notranslate nohighlight">\(\Vert \cdot \Vert_s\)</span>是<span class="math notranslate nohighlight">\(\mathbb{R}^{n \times n}\)</span>上的任意两个矩阵范数，则存在常数<span class="math notranslate nohighlight">\(c_1\)</span>和<span class="math notranslate nohighlight">\(c_2\)</span>，使得对于任意的<span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>有
+\begin{equation*}
+c_1 \Vert x \Vert_s \leq \Vert x \Vert_t \leq c_2 \Vert x \Vert_s
+\end{equation*}</p></li>
+</ul>
+<ul class="simple">
+<li><p>定理：若<span class="math notranslate nohighlight">\(A\)</span>是对称矩阵，则<span class="math notranslate nohighlight">\(\Vert A \Vert_2 = \rho(A)\)</span>，其中<span class="math notranslate nohighlight">\(\rho(A) = \max {|\lambda_i(A)|}\)</span>为矩阵<span class="math notranslate nohighlight">\(A\)</span>的<strong>谱半径</strong>，是其特征值的绝对值大的那一个的绝对值。</p></li>
+</ul>
+<ul class="simple">
+<li><p>定理：设<span class="math notranslate nohighlight">\(\Vert \cdot \Vert\)</span>是<span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>上任意向量范数，其对应的算子范数也记为<span class="math notranslate nohighlight">\(\Vert \cdot \Vert\)</span>，则有
+\begin{equation*}
+\Vert A x \Vert \leq \Vert A \Vert \cdot \Vert x \Vert
+\end{equation*}</p></li>
+</ul>
+<ul class="simple">
+<li><p>定理：设<span class="math notranslate nohighlight">\(\Vert \cdot \Vert\)</span>是任意算子范数，则
+$<span class="math notranslate nohighlight">\(\rho(A) \leq \Vert A \Vert\)</span>$</p></li>
+</ul>
+<ul class="simple">
+<li><p>定理：对任意的<span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span>，总存在一个算子范数<span class="math notranslate nohighlight">\(\Vert \cdot \Vert_\epsilon\)</span>，使得
+\begin{equation}
+\Vert A \Vert_\epsilon \leq \rho(A) + \epsilon
+\end{equation}</p></li>
+</ul>
+<ul class="simple">
+<li><p>定理：设<span class="math notranslate nohighlight">\(\Vert \cdot \Vert\)</span>是任意算子范数，若<span class="math notranslate nohighlight">\(\Vert B \Vert &lt; 1\)</span>，则<span class="math notranslate nohighlight">\(I \pm B\)</span>非奇异，且
+\begin{equation*}
+\left\Vert (I\pm B)^{-1} \right\Vert \leq \frac{1}{ 1 - \Vert B \Vert}
+\end{equation*}</p></li>
+</ul>
+<p><strong>6. 矩阵的条件数</strong></p>
+<p><strong>！定义！</strong>：考虑线性方程组<span class="math notranslate nohighlight">\(A x =b\)</span>，如果<span class="math notranslate nohighlight">\(A\)</span>或者<span class="math notranslate nohighlight">\(b\)</span>的微小变化会导致解的巨大变化，则称此线性方程组是<strong>病态的</strong>，并称矩阵<span class="math notranslate nohighlight">\(A\)</span>是<strong>病态的</strong>，反之则称矩阵<span class="math notranslate nohighlight">\(A\)</span>是良态的。例如下式中，系数矩阵的微小变化造成了最终解的巨大变化，系数矩阵是病态的。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+    1 &amp; 1 \\
+    1 &amp; 1.0001 \\
+\end{bmatrix}
+\begin{bmatrix}
+    x_1 \\
+    x_2
+\end{bmatrix}=
+\begin{bmatrix}
+    2 \\
+    2
+\end{bmatrix} \quad \Longrightarrow \quad
+\begin{bmatrix}
+    x_1 \\
+    x_2
+\end{bmatrix}=
+\begin{bmatrix}
+    2 \\
+    0
+\end{bmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+    1 &amp; 1 \\
+    1 &amp; 1.0001
+\end{bmatrix}
+\begin{bmatrix}
+    x_1 \\
+    x_2
+\end{bmatrix}=
+\begin{bmatrix}
+    2 \\
+    2.0001
+\end{bmatrix} \quad \Longrightarrow \quad
+\begin{bmatrix}
+    x_1 \\
+    x_2
+\end{bmatrix}=
+\begin{bmatrix}
+    1 \\
+    1
+\end{bmatrix}
+\end{split}\]</div>
+<p><strong>！矩阵的条件数！</strong> ：设<span class="math notranslate nohighlight">\(A\)</span>非奇异，则称</p>
+<p>\begin{equation}
+Cond(A) _s = \Vert A^{-1} \Vert_s \Vert A \Vert_s
+\end{equation}</p>
+<p>为<span class="math notranslate nohighlight">\(A\)</span>的条件数，其中<span class="math notranslate nohighlight">\(s\)</span>是<span class="math notranslate nohighlight">\(1\)</span>，<span class="math notranslate nohighlight">\(2\)</span>或<span class="math notranslate nohighlight">\(\infty\)</span>。</p>
+<p><strong>！定理！</strong>：考虑线性方程组<span class="math notranslate nohighlight">\(A x = b\)</span>，设<span class="math notranslate nohighlight">\(A\)</span>是精确的，<span class="math notranslate nohighlight">\(b\)</span>有微小的扰动<span class="math notranslate nohighlight">\(\delta b\)</span>，新的方程组的解为<span class="math notranslate nohighlight">\(x + \delta x\)</span>，即<span class="math notranslate nohighlight">\(A(x + \delta x) = b + \delta b\)</span>，则</p>
+<p>\begin{equation}
+\frac{\Vert \delta x \Vert}{\Vert x \Vert} \leq \left\Vert A^{-1} \right\Vert \left\Vert A \right\Vert \frac{\Vert \delta b \Vert}{\Vert b \Vert}
+\end{equation}</p>
+<p><strong>！定理！</strong>：考虑线性方程组<span class="math notranslate nohighlight">\(A x = b\)</span>，设<span class="math notranslate nohighlight">\(b\)</span>是精确的，<span class="math notranslate nohighlight">\(A\)</span>有微小的扰动<span class="math notranslate nohighlight">\(\delta A\)</span>，新的方程组的解为<span class="math notranslate nohighlight">\(x + \delta x\)</span>。假定<span class="math notranslate nohighlight">\( \left\Vert A^{-1} \right\Vert \left\Vert \delta A \right\Vert &lt; 1 \)</span>，则</p>
+<p>\begin{equation}
+\frac{\Vert \delta x \Vert}{\Vert x \Vert} \leq \frac{\left\Vert A^{-1} \right\Vert \left\Vert A \right\Vert \frac{\Vert \delta A \Vert}{\Vert A \Vert}}{ 1 - \left\Vert A^{-1} \right\Vert \left\Vert A \right\Vert \frac{\Vert \delta A \Vert}{\Vert A \Vert}}
+\end{equation}</p>
+<ul class="simple">
+<li><p>当<span class="math notranslate nohighlight">\(\delta A\)</span>充分小时，不等式右端约为<span class="math notranslate nohighlight">\(\left\Vert A^{-1} \right\Vert \left\Vert A \right\Vert \frac{\Vert \delta A \Vert}{\Vert A \Vert}\)</span></p></li>
+<li><p>通常，当<span class="math notranslate nohighlight">\(A\)</span>的条件数较大时，就称<span class="math notranslate nohighlight">\(A\)</span>是病态的</p></li>
+<li><p>一般来说，条件数越大，病态越严重，此时就越难用一般方法求得线性方程组的比较精确的解。</p></li>
+</ul>
+<p><strong>！条件数的基本性质！</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Cond(A) \geq 1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Cond(\alpha A) = Cond(A)\)</span>，其中<span class="math notranslate nohighlight">\(\alpha\)</span>是任意非零实数</p></li>
+<li><p>若<span class="math notranslate nohighlight">\(A\)</span>是正交矩阵，则<span class="math notranslate nohighlight">\(Cond(A)_2 = 1\)</span></p></li>
+<li><p>若<span class="math notranslate nohighlight">\(A\)</span>是正交矩阵，则对任意的非奇异矩阵<span class="math notranslate nohighlight">\(B\)</span>，有</p></li>
+</ul>
+<p>\begin{equation}
+Cond(BA)_2  =  Cond(AB)_2 = Cond(B)_2
+\end{equation}</p>
+<p><strong>！例！</strong>
+<span class="math notranslate nohighlight">\(A = \begin{bmatrix}
+            1  &amp;  1 \\
+            1  &amp;  1.0001
+        \end{bmatrix}\)</span>，
+计算<span class="math notranslate nohighlight">\(Cond(A)_\infty\)</span>和<span class="math notranslate nohighlight">\(Cond(A)_2\)</span>。</p>
+<p>解：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A^{-1} = 
+\begin{bmatrix}
+    10001   &amp;  -10000 \\
+    -10000  &amp;   10000
+\end{bmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+Cond(A)_\infty = \Vert A^{-1} \Vert\_\infty  \Vert A \Vert\_\infty \approx 4 \times 10^4
+\]</div>
+<!-- Cond(A)_\infty = \Vert A^{-1} \Vert_\infty  \Vert A \Vert_\infty \approx 4 \times 10^4 --><p><span class="math notranslate nohighlight">\(A\)</span>是对称矩阵，且</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda(A) = \frac{2.0001 \pm \sqrt{2.0001^2 - 0.0004}}{2} &gt; 0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Cond(A)_2 = \lambda\_{max} / \lambda\_{min} \approx 4 \times 10^4
+\]</div>
+<!-- Cond(A)_2 = \lambda_{max} / \lambda_{min} \approx 4 \times 10^4 --></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>线性方程组的解<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id13">
+<h3>线性方程组示例<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[ \begin{array}{rrr} 4 &amp; 2 &amp; 7 \\ 3 &amp; 5 &amp; -6 \\ 1 &amp; -3 &amp; 2 \end{array} \right]
+\left[ \begin{array}{r} x_1 \\ x_2 \\ x_3 \end{array} \right]
+= \left[ \begin{array}{r} 2 \\ 3 \\ 4 \end{array} \right]
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+    1 &amp; 2 &amp; 3 \\
+    3 &amp; 2 &amp; 1 \\
+    2 &amp; 1 &amp; 3 \\
+\end{pmatrix}
+\begin{pmatrix}
+    x_1 \\
+    x_2 \\
+    x_3 \\
+\end{pmatrix}=
+\begin{pmatrix}
+    12 \\
+    24 \\
+    36 \\
+\end{pmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+    6 &amp; -2 &amp; 2 &amp; 4 \\
+    -6 &amp; 4 &amp; 1 &amp; -18\\
+    3 &amp; -13 &amp; 9 &amp; 3 \\
+    12 &amp; -8 &amp; 6 &amp; 10 \\
+\end{pmatrix}
+\begin{pmatrix}
+    x_1 \\
+    x_2 \\
+    x_3 \\
+    x_4 \\
+\end{pmatrix}=
+\begin{pmatrix}
+    16 \\
+    -34 \\
+    -19 \\
+    26 \\
+\end{pmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+    0 &amp; 2 &amp; 0 &amp; 1 \\
+    2 &amp; 2 &amp; 3 &amp; 2 \\
+    4 &amp; -3 &amp; 0 &amp; 1 \\
+    6 &amp; 1 &amp; -6 &amp; -5 \\
+\end{pmatrix}
+\begin{pmatrix}
+    x_1 \\
+    x_2 \\
+    x_3 \\
+    x_4 \\
+\end{pmatrix}=
+\begin{pmatrix}
+    0 \\
+    -2 \\
+    -7 \\
+    6 \\
+\end{pmatrix}
+\end{split}\]</div>
+</div>
+<div class="section" id="id14">
+<h3>线性方程组的解的存在唯一性定理<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p><strong>！定理！</strong>：（<font color="red">解的存在性与唯一性</font>）下列论断之间是相互等价的</p>
+<ul class="simple">
+<li><p>方程<span class="math notranslate nohighlight">\(A x = b\)</span>存在唯一解</p></li>
+<li><p><span class="math notranslate nohighlight">\(det(A) \neq 0\)</span></p></li>
+<li><p>矩阵<span class="math notranslate nohighlight">\(A\)</span>可逆</p></li>
+<li><p>方程<span class="math notranslate nohighlight">\(A x = 0\)</span>只有零解</p></li>
+<li><p>矩阵<span class="math notranslate nohighlight">\(A\)</span>满秩，即<span class="math notranslate nohighlight">\(A\)</span>的秩为<span class="math notranslate nohighlight">\(n\)</span></p></li>
+</ul>
+<p><strong>！定理！</strong>：（<font color="red">对称正定矩阵的性质</font>）若<span class="math notranslate nohighlight">\(A\)</span>对称正定，则</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A\)</span> 非奇异，且 <span class="math notranslate nohighlight">\(A^{-1}\)</span>也对称正定；</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> 的所有顺序主子阵都对称正定；</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> 的所有特征值都是正实数；</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> 的所有顺序主子式都大于 <span class="math notranslate nohighlight">\(0\)</span>。</p></li>
+</ul>
+<p><strong>！定理！</strong>：（<font color="red">对称正定矩阵的判定</font>）</p>
+<ul class="simple">
+<li><p>若<span class="math notranslate nohighlight">\(A\)</span>对称，且所有顺序主子式都大于<span class="math notranslate nohighlight">\(0\)</span>，则<span class="math notranslate nohighlight">\(A\)</span>对称正定。</p></li>
+<li><p>若<span class="math notranslate nohighlight">\(A\)</span>对称，且所有特征值都大于<span class="math notranslate nohighlight">\(0\)</span>，则<span class="math notranslate nohighlight">\(A\)</span>对称正定。</p></li>
+</ul>
+<p><strong>！定理！</strong>：（<font color="red">Jordan 标准型</font>）</p>
+<p>设<span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n} \)</span>，则存在非奇异矩阵<span class="math notranslate nohighlight">\(X\)</span>，使得</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X^{-1} A X = \begin{pmatrix}
+  J_1(\lambda_1) &amp;                &amp;        &amp; \\
+                 &amp; J_2(\lambda_2) &amp;        &amp; \\
+                 &amp;                &amp; \ddots  &amp; \\
+                 &amp;                &amp;         &amp; J_r(\lambda_r) \\
+\end{pmatrix}
+\end{split}\]</div>
+<p>其中</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+J_i(\lambda_i) = \begin{pmatrix}
+  \lambda_i &amp;      1    &amp;        &amp;           \\
+            &amp; \lambda_i &amp; \ddots &amp;           \\
+            &amp;           &amp; \ddots &amp;     1     \\
+            &amp;           &amp;        &amp; \lambda_i \\
+\end{pmatrix} \in \mathbb{R}^{n_i \times n_i} 
+\end{split}\]</div>
+<p>为<span class="math notranslate nohighlight">\(Jordan\)</span>块，且<span class="math notranslate nohighlight">\(\sum_{i=1}^r n_i = n\)</span>。</p>
+</div>
+</div>
+<div class="section" id="id15">
+<h2>解线性方程组的直接法<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<p>对于中小型方程组，常用直接解法。从本质上来说，直接方法的原理是找一个可逆矩阵<span class="math notranslate nohighlight">\(M\)</span>，使得<span class="math notranslate nohighlight">\(MA\)</span>是一个上三角阵，这一过程一般称为“<font color="red"><strong>消元</strong></font>”过程，消元之后再进行“<font color="red"><strong>回代</strong></font>”，即求解<span class="math notranslate nohighlight">\(MAx=Mb\)</span>。</p>
+<p>对于线性方程组<span class="math notranslate nohighlight">\(Ax = b\)</span>而言，有三种方程的解我们是可以直接求出的。</p>
+<ul class="simple">
+<li><p>情形一：当</p></li>
+</ul>
+<p>\begin{equation}
+A = diag(a_{11}, a_{22}, \cdots , a_{nn} )
+\end{equation}</p>
+<p>时，我们有</p>
+<p>\begin{equation}
+x_i = \frac{b_i}{a_{ii}},\quad i =1,2,\cdots,n,
+\end{equation}</p>
+<p>总共需要进行<span class="math notranslate nohighlight">\( n \)</span>次运算。</p>
+<ul class="simple">
+<li><p>情形二：当</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A =
+\begin{pmatrix}
+ l_{11} &amp;        &amp;        &amp;         \\
+ l_{21} &amp; l_{22} &amp;        &amp;         \\
+ \vdots &amp; \vdots &amp; \ddots &amp;         \\
+ l_{n1} &amp; l_{n1} &amp; \cdots &amp; l_{nn}  \\
+\end{pmatrix} 
+\end{split}\]</div>
+<p>时，我们有</p>
+<p>\begin{equation}
+x_i = \frac{b_i - \sum_{j=1}^{i-1} l_{ij} x_j }{l_{ii}},\quad i =1,2,\cdots,n,
+\end{equation}</p>
+<p>总共需要进行<span class="math notranslate nohighlight">\( \frac{n(n+1)}{2} \)</span>次运算。</p>
+<ul class="simple">
+<li><p>情形三：当</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ A =
+ \begin{pmatrix}
+     u_{11} &amp; u_{12} &amp; \cdots &amp; u_{1n}  \\
+            &amp; l_{22} &amp; \cdots &amp; u_{2n}  \\
+            &amp;        &amp; \ddots &amp; \vdots  \\
+            &amp;        &amp;        &amp; u_{nn}  \\
+ \end{pmatrix} 
+\end{split}\]</div>
+<p>时，我们有</p>
+<p>\begin{equation}
+x_i = \frac{b_i - \sum_{j=i+1}^{n} u_{ij} x_j }{u_{ii}},\quad i =1,2,\cdots,n,
+\end{equation}</p>
+<p>总共需要进行<span class="math notranslate nohighlight">\( \frac{n(n+1)}{2} \)</span>次运算。</p>
+<p>对线性方程组<span class="math notranslate nohighlight">\(Ax = b\)</span>而言，进行如下的变换，解不变</p>
+<ul class="simple">
+<li><p>交换两个方程的次序</p></li>
+<li><p>一个方程的两边同时乘以一个非<span class="math notranslate nohighlight">\(0\)</span>的数</p></li>
+<li><p>一个方程的两边同时乘以一个非<span class="math notranslate nohighlight">\(0\)</span>的数，加到另一个方程</p></li>
+</ul>
+<p>因此，如果我们对增广矩阵<span class="math notranslate nohighlight">\((A,b)\)</span>做如下变换，解不变</p>
+<ul class="simple">
+<li><p>交换矩阵的两行</p></li>
+<li><p>某一行的两边同时乘以一个非<span class="math notranslate nohighlight">\(0\)</span>的数</p></li>
+<li><p>某一行的两边同时乘以一个非<span class="math notranslate nohighlight">\(0\)</span>的数，加到另一行</p></li>
+</ul>
+<p>消去法就是对增广矩阵作上述行的变换，变为我们已知的<span class="math notranslate nohighlight">\(3\)</span>种类型之一，而后求根。</p>
+<div class="section" id="id16">
+<h3>消元法<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<p>我们把线性方程组<span class="math notranslate nohighlight">\(Ax = b\)</span>写成</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left\{
+\begin{aligned}
+a_{11} x_1 + a_{12} x_2 + \cdots + a_{1n} x_n = b_1 &amp;= a_{1,n+1} \\
+a_{21} x_1 + a_{22} x_2 + \cdots + a_{2n} x_n = b_2 &amp;= a_{2,n+1} \\
+\cdots &amp;= \cdots \\
+a_{n1} x_1 + a_{11} x_2 + \cdots + a_{nn} x_n = b_n &amp;= a_{n,n+1} \\
+\end{aligned}
+\right.
+\end{split}\]</div>
+<div class="section" id="gauss-elimination">
+<h4>高斯消元法（Gauss Elimination）<a class="headerlink" href="#gauss-elimination" title="Permalink to this headline">¶</a></h4>
+<p><span class="math notranslate nohighlight">\(Gauss\)</span>消元法的主要思路：将线性方程组的系数矩阵<span class="math notranslate nohighlight">\(A\)</span>转化为上三角矩阵，然后回代求解。</p>
+<p>记<span class="math notranslate nohighlight">\(A^{(1)} = \left( a_{ij}^{(1)} \right)_{n \times n}\)</span>，<span class="math notranslate nohighlight">\(b^{(1)} = \left( b_1^{(1)}, \cdots, b_n^{(1)} \right)^T = b\)</span> ，即 <span class="math notranslate nohighlight">\(a_{ij} = a_{ij}^{(1)}\)</span>，<span class="math notranslate nohighlight">\(b_i^{(1)} = b_i\)</span></p>
+<p><font color="red" face = "bold">第1步</font>：消第<span class="math notranslate nohighlight">\(1\)</span>列。</p>
+<p>设<span class="math notranslate nohighlight">\(a_{11}^{(1)} \neq 0\)</span>，计算</p>
+<div class="math notranslate nohighlight">
+\[m_{i1} = a_{i1}^{(1)} / a_{11}^{(1)} \,  (i=2,...,n)\]</div>
+<p>依次将增广矩阵的第<span class="math notranslate nohighlight">\(i\)</span>行<span class="math notranslate nohighlight">\(-m_{i1}\times\)</span>第<span class="math notranslate nohighlight">\(1\)</span>行，得</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+    A^{(2)}  &amp; b^{(2)}
+\end{pmatrix} = \left[ \begin{array}{c|c}
+    \begin{matrix}
+    a_{11}^{(1)}  &amp; a_{12}^{(1)}   &amp;  \cdots   &amp;  a_{1n}^{(1)} \\
+                  &amp; a_{22}^{(2)}   &amp;  \cdots   &amp;  a_{2n}^{(2)} \\
+                  &amp; \vdots         &amp;  \ddots   &amp;  \vdots       \\
+                  &amp; a_{n2}^{(2)}   &amp;  \cdots   &amp;  a_{nn}^{(2)} \\
+    \end{matrix} &amp;
+    \begin{matrix}
+    b_{1}^{(1)}  \\
+    b_{2}^{(2)}  \\
+    \vdots       \\
+    b_{n}^{(2)}  \\
+    \end{matrix}
+\end{array} \right]
+\end{split}\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(a_{ij}^{(2)} = a_{ij}^{(1)} - m_{i1} a_{1j}^{(1)}\)</span>，<span class="math notranslate nohighlight">\(b_{i}^{(2)} = b_{i}^{(1)} - m_{i1} b_{1}^{(1)}\)</span>，<span class="math notranslate nohighlight">\(i,j=2,\cdots,n\)</span>。</p>
+<p><font color="red" face = "bold">第2步</font>：消第<span class="math notranslate nohighlight">\(2\)</span>列。</p>
+<p>设<span class="math notranslate nohighlight">\(a_{22}^{(2)} \neq 0\)</span>，计算</p>
+<div class="math notranslate nohighlight">
+\[m_{i2} = a_{i2}^{(2)} / a_{22}^{(2)}\, (i=3,...,n)\]</div>
+<p>依次将<span class="math notranslate nohighlight">\(A^{(2)}\)</span>的第<span class="math notranslate nohighlight">\(i\)</span>行<span class="math notranslate nohighlight">\(-m_{i2}\times\)</span>第<span class="math notranslate nohighlight">\(2\)</span>行，得</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+    A^{(3)}  &amp; b^{(3)}
+\end{pmatrix}= \left[ \begin{array}{c|c}
+    \begin{matrix}
+    a_{11}^{(1)}  &amp; a_{12}^{(1)} &amp; a_{13}^{(1)}  &amp;  \cdots   &amp;  a_{1n}^{(1)} \\
+                  &amp; a_{22}^{(2)} &amp; a_{23}^{(2)}  &amp;  \cdots   &amp;  a_{2n}^{(2)} \\
+                  &amp;              &amp; a_{33}^{(3)}  &amp;  \cdots   &amp;  a_{3n}^{(3)} \\
+                  &amp;              &amp; \vdots        &amp;  \ddots   &amp;     \vdots    \\
+                  &amp;              &amp; a_{n3}^{(3)}  &amp;  \cdots   &amp;  a_{nn}^{(3)} \\
+    \end{matrix} &amp;
+    \begin{matrix}
+    b_{1}^{(1)}  \\
+    b_{2}^{(2)}  \\
+    b_{3}^{(3)}  \\
+    \vdots       \\
+    b_{n}^{(3)}  \\
+    \end{matrix}
+\end{array} \right]
+\end{split}\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(a_{ij}^{(3)} = a_{ij}^{(2)} - m_{i2} a_{2j}^{(2)}\)</span>，<span class="math notranslate nohighlight">\(b_{i}^{(3)} = b_{i}^{(2)} - m_{i2} b_{2}^{(2)}\)</span>，<span class="math notranslate nohighlight">\(i,j=3,\cdots,n\)</span>。</p>
+<p>依次类推，<font color="red" face = "bold">第<span class="math notranslate nohighlight">\(k-1\)</span>步</font>后可得</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+    A^{(k)}  &amp; b^{(k)}
+\end{pmatrix} = \left[ \begin{array}{c|c}
+    \begin{matrix}
+    a_{11}^{(1)}  &amp;    \cdots    &amp; a_{1k}^{(1)}  &amp;  \cdots   &amp;  a_{1n}^{(1)} \\
+                  &amp;    \ddots    &amp;     \vdots    &amp;  \vdots   &amp;     \vdots    \\
+                  &amp;              &amp; a_{kk}^{(k)}  &amp;  \cdots   &amp;  a_{kn}^{(k)} \\
+                  &amp;              &amp; \vdots        &amp;  \ddots   &amp;     \vdots    \\
+                  &amp;              &amp; a_{nk}^{(k)}  &amp;  \cdots   &amp;  a_{nn}^{(k)} \\
+    \end{matrix} &amp;
+    \begin{matrix}
+    b_{1}^{(1)}  \\
+    \vdots       \\
+    b_{k}^{(k)}  \\
+    \vdots       \\
+    b_{n}^{(k)}  \\
+    \end{matrix}
+\end{array} \right]
+\end{split}\]</div>
+<p><font color="red" face = "bold">第<span class="math notranslate nohighlight">\(k\)</span>步</font>：消第<span class="math notranslate nohighlight">\(k\)</span>列。</p>
+<ul class="simple">
+<li><p>设<span class="math notranslate nohighlight">\(a_{kk}^{(k)} \neq 0\)</span>，</p></li>
+<li><p>先计算<span class="math notranslate nohighlight">\(m_{ik} = a_{ik}^{(k)} / a_{kk}^{(k)}\)</span>，<span class="math notranslate nohighlight">\(i=k+1,\cdots,n\)</span>，</p></li>
+<li><p>再计算<span class="math notranslate nohighlight">\(a_{ij}^{(k+1)} = a_{ij}^{(k)} - m_{ik} a_{kj}^{(k)}\)</span>，<span class="math notranslate nohighlight">\(b_{i}^{(k+1)} = b_{i}^{(k)} - m_{ik} b_{k}^{(k)}\)</span>，<span class="math notranslate nohighlight">\(i,j=k+1,\cdots,n\)</span>，</p></li>
+<li><p>获得<span class="math notranslate nohighlight">\(A^{(k+1)}\)</span></p></li>
+</ul>
+<p><font color="red" face = "bold">第<span class="math notranslate nohighlight">\(n-1\)</span>步</font>后可得</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+    A^{(n)}  &amp; b^{(n)}
+\end{pmatrix}= \left[ \begin{array}{c|c}
+    \begin{matrix}
+    a_{11}^{(1)}  &amp;    a_{12}^{(1)}    &amp;  \cdots   &amp;  a_{1n}^{(1)} \\
+                  &amp;    a_{22}^{(2)}    &amp;  \cdots   &amp;  a_{2n}^{(2)} \\
+                  &amp;                    &amp;  \ddots   &amp;     \vdots    \\
+                  &amp;                    &amp;           &amp;  a_{nn}^{(n)} \\
+    \end{matrix} &amp;
+    \begin{matrix}
+    b_{1}^{(1)}  \\
+    b_{2}^{(2)}  \\
+    \vdots       \\
+    b_{n}^{(n)}  \\
+    \end{matrix}
+\end{array} \right]
+\end{split}\]</div>
+<p>即
+\begin{equation}
+A^{(n)} x = b^{(n)}
+\end{equation}</p>
+<p><font color="red" face = "bold">回代求解可得：</font>
+\begin{equation*}
+\begin{aligned}
+x_n &amp;= b_n^{(n)} / a_{nn}^{(n)} \
+x_i &amp;= \left( b_i^{(i)} - \sum_{j=i+1}^{n}  a_{ij}^{(i)} x_j \right) \Bigg/ a_{ii}^{(i)},\quad (i = n-1,\cdots, 1)
+\end{aligned}
+\end{equation*}</p>
+<p><strong>！几点注记！</strong>：</p>
+<ul class="simple">
+<li><p>主元：<span class="math notranslate nohighlight">\(a_{ii}^{(i)}\quad (i=1,2,\cdots,n)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Gauss\)</span>消元法能进行到底的条件：主元全不为<span class="math notranslate nohighlight">\(0\)</span></p></li>
+</ul>
+<p><strong>！定理！</strong>：
+<span class="math notranslate nohighlight">\(a_{ii}^{(i)} \neq 0\ (i=1,2,\cdots,n)\)</span> 的充要条件是<span class="math notranslate nohighlight">\(A\)</span>的顺序主子式都不为零，即</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+D_1 = a_{11} \neq 0, \quad D_i = \left| \begin{matrix}
+    a_{11} &amp; \cdots &amp; a_{1i} \\
+    \vdots &amp; \ddots &amp; \vdots \\
+    a_{i1} &amp; \cdots &amp; a_{ii} \\
+\end{matrix} \right| \neq 0,\quad i=1,2,\cdots, n
+\end{split}\]</div>
+<p><strong>！推论！</strong>：
+根据以上定理，主元<span class="math notranslate nohighlight">\(a_{ii}^{(i)}\)</span>可以依下式计算
+\begin{equation*}
+a_{11}^{(1)} = D_1,\quad a_{ii}^{(i)} = D_i \big/ D_{i-1},\quad i = 2,\cdots, n
+\end{equation*}</p>
+<p><strong>！Gauss消元法的计算次数！</strong>：</p>
+<ul class="simple">
+<li><p>乘除运算的次数：</p>
+<ol class="simple">
+<li><p>第<span class="math notranslate nohighlight">\(k\)</span>步：消第<span class="math notranslate nohighlight">\(k\)</span>列</p>
+<ul>
+<li><p>计算 <span class="math notranslate nohighlight">\(m_{ik} = a_{ik}^{(k)} \big/ a_{kk}^{(k)}\)</span>，共<span class="math notranslate nohighlight">\(n-k\)</span>步</p></li>
+<li><p>计算 <span class="math notranslate nohighlight">\(a_{ij}^{(k+1)} = a_{ij}^{(k)} - m_{ik} a_{kj}^{(k)}\)</span>，共<span class="math notranslate nohighlight">\((n-k)^2\)</span>步</p></li>
+<li><p>计算 <span class="math notranslate nohighlight">\(b_{i}^{(k+1)} = b_{i}^{(k)} - m_{ik} b_{k}^{(k)}\)</span>，共<span class="math notranslate nohighlight">\(n-k\)</span>步</p></li>
+</ul>
+</li>
+<li><p>回代求解：共<span class="math notranslate nohighlight">\(n(n+1)/2\)</span>步
+\begin{equation*}
+\left{\begin{aligned}
+x_n &amp;= b_n^{(n)} / a_{nn}^{(n)} \
+x_i &amp;= \left( b_i^{(i)} - \sum_{j=i+1}^{n}  a_{ij}^{(i)} x_j \right) \Bigg/ a_{ii}^{(i)},\quad (i = n-1,\cdots, 1)
+\end{aligned}\right.
+\end{equation*}</p></li>
+<li><p>从而，可以得到<span class="math notranslate nohighlight">\(Gauss\)</span>消元法的乘除运算量为：<span class="math notranslate nohighlight">\(\frac{n^3}{3} + n^2 - \frac{n}{3}\)</span></p></li>
+</ol>
+</li>
+<li><p>加减运算的次数：<span class="math notranslate nohighlight">\(\frac{n^3}{3} + \frac{n^2}{2} - \frac{5n}{6}\)</span></p></li>
+</ul>
+<p><strong>！例！</strong>：用消元法解线性方程组
+\begin{equation*}
+\left{\begin{aligned}
+x_1 - 2 x_2 + 2 x_3 &amp;= -2 \
+2x_1 - 3 x_2 - 3 x_3 &amp;= 4 \
+4x_1 + x_2 + 6 x_3 &amp;= 3 \
+\end{aligned}\right.
+\end{equation*}</p>
+<p><strong>！解！</strong>：
+\begin{equation}
+(A,b) = \begin{bmatrix}
+1 &amp; -2 &amp; 2  &amp; -2 \
+2 &amp; -3 &amp; -3 &amp; 4  \
+4 &amp; 1  &amp; 6  &amp; 3  \
+\end{bmatrix}
+\Longrightarrow
+\begin{bmatrix}
+1 &amp; -2 &amp; 2  &amp; -2 \
+0 &amp; 1  &amp; -7 &amp; 8  \
+0 &amp; 9  &amp; -2 &amp; 11 \
+\end{bmatrix}
+\end{equation}
+\begin{equation}
+\Longrightarrow\begin{bmatrix}
+1 &amp; -2 &amp; 2  &amp; -2   \
+0 &amp; 1  &amp; -7 &amp; 8    \
+0 &amp; 0  &amp; 61 &amp; -61  \
+\end{bmatrix}
+\Longrightarrow
+\left{\begin{aligned}
+x_3 &amp;= 1 \
+x_2 &amp;= 8 + 7 x_3 = 1   \
+x_1 &amp;= -2 + 2 x_2 - 2 x_3 = 2 \
+\end{aligned} \right.
+\end{equation}</p>
+<p><strong>！例！</strong>：用消元法解线性方程组
+\begin{equation*}
+\left{\begin{aligned}
+x_1 + \frac{2}{3} x_2 +   \frac{1}{3} x_3 &amp;= 2 \
+\frac{9}{20} x_1 +             x_2 + \frac{11}{20} x_3 &amp;= 2 \
+\frac{2}{3}  x_1 + \frac{1}{3} x_2 +               x_3 &amp;= 2 \
+\end{aligned}\right.
+\end{equation*}</p>
+<p><strong>！解！</strong>：
+\begin{equation*}
+(A,b) = \begin{bmatrix}
+1            &amp; \frac{2}{3}  &amp;  \frac{1}{3}  &amp; 2  \
+\frac{9}{20} &amp; 1            &amp; \frac{11}{20} &amp; 2  \
+\frac{2}{3}  &amp; \frac{1}{3}  &amp; 1             &amp; 2  \
+\end{bmatrix}
+\Longrightarrow
+\begin{bmatrix}
+1            &amp; \frac{2}{3}   &amp;  \frac{1}{3}  &amp; 2  \
+0            &amp; \frac{7}{10}  &amp; \frac{2}{5}   &amp; \frac{11}{10}  \
+0            &amp; -\frac{1}{9}  &amp; \frac{7}{9}   &amp; \frac{2}{3} \
+\end{bmatrix}
+\end{equation*}</p>
+<p>\begin{equation*}
+\Longrightarrow\begin{bmatrix}
+1            &amp; \frac{2}{3}   &amp;  \frac{1}{3}  &amp; 2  \
+0            &amp; \frac{7}{10}  &amp; \frac{2}{5}   &amp; \frac{11}{10}  \
+0            &amp; 0             &amp; \frac{53}{63} &amp; \frac{53}{63}  \
+\end{bmatrix}
+\Longrightarrow
+\left{\begin{aligned}
+x_3 &amp;= 1 \
+x_2 &amp;= \frac{11}{7} - \frac{4}{7} x_3 = 1   \
+x_1 &amp;= 2 - \frac{2}{3} x_2 - \frac{1}{3} x_3 = 1 \
+\end{aligned} \right.
+\end{equation*}</p>
+</div>
+<div class="section" id="gauss-elimination-with-partial-pivoting">
+<h4>列主元消元法（Gauss Elimination with Partial Pivoting）<a class="headerlink" href="#gauss-elimination-with-partial-pivoting" title="Permalink to this headline">¶</a></h4>
+<p>在以上的<span class="math notranslate nohighlight">\(Gauss\)</span>消元法中，消元过程能进行的条件是主元素<span class="math notranslate nohighlight">\(a_{ii}^{(i)} \neq 0\)</span>。例如，若<span class="math notranslate nohighlight">\(a_{11}^{(1)} = 0\)</span>，消元过程的第<span class="math notranslate nohighlight">\(1\)</span>步就不能进行。</p>
+<p>有时，虽然<span class="math notranslate nohighlight">\(a_{ii}^{(i)} \neq 0\)</span>，但是<span class="math notranslate nohighlight">\(| a_{ii}^{(i)} |\)</span>很小，这时计算过程的舍入误差导致消去法数值不稳定，以致结果不可靠。</p>
+<p><strong>！例！</strong>：用三位十进制浮点运算求解
+\begin{equation*}
+\left{\begin{aligned}
+1.00\times10^{-5} x_1 + 1.00 x_2 &amp;= 1.00 \
+1.00 x_1 + 1.00 x_2 &amp;= 2.00
+\end{aligned}\right.
+\end{equation*}</p>
+<p><strong>！解！</strong>： 这个方程的解显然接近<span class="math notranslate nohighlight">\((1.00,1.00)^T\)</span>，但是系数<span class="math notranslate nohighlight">\(a_{11}\)</span>是个小主元。如果用<span class="math notranslate nohighlight">\(Gauss\)</span>消元法求解，则有
+\begin{equation*}
+\begin{aligned}
+m_{21} &amp;= a_{21}/a_{11} = 1.00\times10^{5} \
+a_{22}^{(2)} &amp;= a_{22} - m_{21}a_{12} = 1.00 - 1.00\times10^{5} \
+b_{2}^{(2)} &amp;= b_{2} - m_{21} b_{1} = 2.00 - 1.00\times10^{5}
+\end{aligned}
+\end{equation*}</p>
+<p>在三位十进制运算的限制下，得到<span class="math notranslate nohighlight">\(x_2 = b_{2}^{(2)} / a_{22}^{(2)} = 1.00\)</span>，代回第<span class="math notranslate nohighlight">\(1\)</span>个方程得<span class="math notranslate nohighlight">\(x_1 = 0\)</span>，这显然不是正确的解。因为使用了小主元<span class="math notranslate nohighlight">\(a_{11}\)</span>做除法，使得乘数<span class="math notranslate nohighlight">\(m_{21}\)</span>是个大数，在<span class="math notranslate nohighlight">\(a_{22}^{(2)}\)</span>的计算中，<span class="math notranslate nohighlight">\(a_{22}\)</span>的值完全被掩盖了。</p>
+<p>如果先把两个方程的次序交换，再用<span class="math notranslate nohighlight">\(Gauss\)</span>消元法，就不会出现上述问题，解得<span class="math notranslate nohighlight">\(x_1 =1.00\)</span>，<span class="math notranslate nohighlight">\(x_2 =1.00\)</span>，这就是<font color="red">列主元消元法的思想</font>。</p>
+<p><font color="magenta">列主元消去法</font>也称按列部分主元的消元法。一般地，在完成第<span class="math notranslate nohighlight">\(k-1\)</span>步消元运算后，在<span class="math notranslate nohighlight">\(\left( A^{(k)}, b^{(k)} \right)\)</span>的第<span class="math notranslate nohighlight">\(k\)</span>列元素<span class="math notranslate nohighlight">\(a_{kk}^{(k)}\)</span>之下的所有元素中选一个绝对值最大的元素作为主元素，即若
+\begin{equation*}
+\left| a_{i_k, k}^{(k)} \right| = \max_{k \leq i \leq n} \left| a_{i, k}^{(k)} \right|
+\end{equation*}
+则以<span class="math notranslate nohighlight">\(a_{i_k, k}^{(k)}\)</span>为主元素，这里<span class="math notranslate nohighlight">\(i_k \geq k\)</span>。由于<span class="math notranslate nohighlight">\(A^{(k)}\)</span>非奇异，有<span class="math notranslate nohighlight">\(a_{i_k, k}^{(k)} \neq 0\)</span>。这样，<span class="math notranslate nohighlight">\(|m_{ik}| = \left| a_{ik}^{(k)} \right| \big/ \left| a_{i_k,k}^{(k)} \right| \leq 1 \)</span>有达到控制舍入误差的作用。</p>
+<p>选出主元素后，则进行顺序<span class="math notranslate nohighlight">\(Gauss\)</span>消元法的第<span class="math notranslate nohighlight">\(k\)</span>步：若<span class="math notranslate nohighlight">\(i_k &gt; k\)</span>，则将<span class="math notranslate nohighlight">\(\left( A^{(k)}, b^{(k)} \right)\)</span>的第<span class="math notranslate nohighlight">\(i_k\)</span>行与第<span class="math notranslate nohighlight">\(k\)</span>行交换，然后进行消元运算。</p>
+<p>完成了<span class="math notranslate nohighlight">\(n-1\)</span>步定主元，换行与消元运算后，得到<span class="math notranslate nohighlight">\(\left( A^{(n)}, b^{(n)} \right)\)</span>，这是与原方程等价的方程组，<span class="math notranslate nohighlight">\(A^{(n)}\)</span>是一个上三角阵，在回代求解。这就是<font color="magenta">列主元消元法的计算过程</font>。</p>
+<p><strong>！例！</strong>：使用列主元消去法解方程组<span class="math notranslate nohighlight">\(Ax=b\)</span>，计算过程中取五位有效数字进行计算，其中
+\begin{equation*}
+(A,b) = \begin{bmatrix}
+-0.002 &amp; 2        &amp; 2  &amp; 0.4    \
+1      &amp; 0.78125  &amp; 0  &amp; 1.3816 \
+3.996  &amp; 5.5625   &amp; 4  &amp; 7.4178 \
+\end{bmatrix}
+\end{equation*}</p>
+<p><strong>！解！</strong>：记<span class="math notranslate nohighlight">\((A^{(1)} , b^{(1)}) = (A,b)\)</span>。第一步选列主元为<span class="math notranslate nohighlight">\(a_{31}^{(1)} = 3.996\)</span>，交换第<span class="math notranslate nohighlight">\(1\)</span>行与第<span class="math notranslate nohighlight">\(3\)</span>行，再消元计算得
+\begin{equation*}
+\left( A^{(2)},b^{(2)} \right) = \begin{bmatrix}
+3.996 &amp; 5.5625   &amp; 4       &amp; 7.4178    \
+0     &amp; -0.61077 &amp; -1.0010  &amp; -0.47471 \
+0     &amp; 2.0028   &amp; 2.0020   &amp; 0.40371  \
+\end{bmatrix}
+\end{equation*}</p>
+<p>第二步选列主元为<span class="math notranslate nohighlight">\(a_{32}^{(2)} = 2.0028\)</span>，交换第<span class="math notranslate nohighlight">\(2\)</span>行与第<span class="math notranslate nohighlight">\(3\)</span>行，再消元计算得
+\begin{equation*}
+\left( A^{(3)},b^{(3)} \right) = \begin{bmatrix}
+3.996 &amp; 5.5625   &amp; 4         &amp; 7.4178    \
+0     &amp; 2.0028   &amp; 2.0020    &amp; 0.40371  \
+0     &amp; 0        &amp; -0.39047  &amp; -0.35159 \
+\end{bmatrix}
+\end{equation*}
+消元过程到此结束。</p>
+<p>回代计算依次得到解
+\begin{equation*}
+x_3 = 0.90043,\quad x_2 = -0.69850,\quad x_1 = 1.9273
+\end{equation*}
+本题的精确解是
+\begin{equation*}
+x_3 = 0.900423,\quad x_2 = -0.698496,\quad x_1 = 1.92730
+\end{equation*}
+而使用不选主元的顺序<span class="math notranslate nohighlight">\(Gauss\)</span>消元法，得到的解是
+\begin{equation*}
+x_3 = 0.88888,\quad x_2 = -0.68695,\quad x_1 = 1.9300
+\end{equation*}</p>
+<p><strong>！例！</strong>：分别用<span class="math notranslate nohighlight">\(Gauss\)</span>消去法和列主元消去法求解线性方程组
+\begin{equation*}
+\begin{bmatrix}
+0.001   &amp; 2.000   &amp; 3.000 \
+-1.000   &amp; 3.712   &amp; 4.623 \
+-2.000   &amp; 1.072   &amp; 5.643 \
+\end{bmatrix}
+\begin{bmatrix}
+x_1   \
+x_2   \
+x_3   \
+\end{bmatrix}=
+\begin{bmatrix}
+1.000   \
+2.000   \
+3.000   \
+\end{bmatrix}
+\end{equation*}
+用<span class="math notranslate nohighlight">\(4\)</span>位浮点数进行计算，精确解舍入到<span class="math notranslate nohighlight">\(4\)</span>位有效数字为<span class="math notranslate nohighlight">\(x^* = [-0.4904, -0.05104, 0.3675]^T\)</span></p>
+<p><strong>！解！</strong>：</p>
+<ul class="simple">
+<li><p>用<span class="math notranslate nohighlight">\(Gauss\)</span>消去法求解
+\begin{equation}
+(A^{(0)}, b^{(0)}) = \begin{bmatrix}
+0.001   &amp; 2.000   &amp; 3.000  &amp; 1.000 \
+-1.000   &amp; 3.712   &amp; 4.623  &amp; 2.000 \
+-2.000   &amp; 1.072   &amp; 5.643  &amp; 3.000 \
+\end{bmatrix}
+\end{equation}</p></li>
+</ul>
+<p>\begin{equation}
+(A^{(1)}, b^{(1)}) = \begin{bmatrix}
+0.001   &amp; 2.000   &amp; 3.000  &amp; 1.000 \
+0       &amp; 2004    &amp; 3005   &amp; 1002  \
+0       &amp; 4001    &amp; 6006   &amp; 2003  \
+\end{bmatrix}
+\end{equation}</p>
+<p>计算解为
+\begin{equation}
+\bar{x} = [-0.4000, -0.09980, 0.4000]^T
+\end{equation}</p>
+<ul class="simple">
+<li><p>用列主元消去法求解
+\begin{equation}
+(A^{(0)}, b^{(0)}) = \begin{bmatrix}
+-2.000   &amp; 1.072   &amp; 5.643  &amp; 3.000 \
+-1.000   &amp; 3.712   &amp; 4.623  &amp; 2.000 \
+0.001   &amp; 2.000   &amp; 3.000  &amp; 1.000 \
+\end{bmatrix}
+\end{equation}</p></li>
+</ul>
+<p>\begin{equation}
+(A^{(1)}, b^{(1)}) = \begin{bmatrix}
+-2.000   &amp; 1.072   &amp; 5.643  &amp; 3.000  \
+0.000   &amp; 3.176   &amp; 1.801  &amp; 0.5000 \
+0.001   &amp; 2.001   &amp; 3.003  &amp; 1.002  \
+\end{bmatrix}
+\end{equation}</p>
+<p>\begin{equation}
+(A^{(2)}, b^{(2)}) = \begin{bmatrix}
+-2.000   &amp; 1.072   &amp; 5.643  &amp; 3.000   \
+0.000   &amp; 3.176   &amp; 1.801  &amp; 0.5000  \
+0.001   &amp; 0.000   &amp; 1.858  &amp; 0.6870  \
+\end{bmatrix}
+\end{equation}</p>
+<p>计算得解为
+\begin{equation}
+x^\star = [-0.4900, -0.05113, 0.3678]^T
+\end{equation}</p>
+<p>对比两种方法的解与准确解</p>
+<p>\begin{equation}
+\left{\begin{aligned}
+x^*     &amp;= [-0.4904, -0.05104, 0.3675]^T \
+\bar{x} &amp;= [-0.4000, -0.09980, 0.4000]^T  \
+x^\star &amp;= [-0.4900, -0.05113, 0.3678]^T  \
+\end{aligned}\right.
+\end{equation}</p>
+</div>
+<div class="section" id="gauss-elimination-with-complete-pivoting">
+<h4>全主元消元法（Gauss Elimination with Complete Pivoting）<a class="headerlink" href="#gauss-elimination-with-complete-pivoting" title="Permalink to this headline">¶</a></h4>
+<p>除了列主元的消元法外，还有一种\textcolor{red}{全主元消元法}。在其过程的第<span class="math notranslate nohighlight">\(k\)</span>步(<span class="math notranslate nohighlight">\(k \leq 1\)</span>)，不是按列来选主元，而是在<span class="math notranslate nohighlight">\(A^{(k)}\)</span>右下角的<span class="math notranslate nohighlight">\(n-k+1\)</span>阶子阵中选主元<span class="math notranslate nohighlight">\(a_{i_k, j_k}^{(k)}\)</span>，即
+\begin{equation*}
+\left| a_{i_k, j_k}^{(k)} \right| = \max_{k\leq i,j \leq n} \left| a_{i, j}^{(k)} \right|
+\end{equation*}
+然后将<span class="math notranslate nohighlight">\(\left( A^{(k)}, b^{(k)} \right)\)</span>的第<span class="math notranslate nohighlight">\(i_k\)</span>行与第<span class="math notranslate nohighlight">\(k\)</span>行交换，将第<span class="math notranslate nohighlight">\(j_k\)</span>列与第<span class="math notranslate nohighlight">\(k\)</span>列交换，同时将自变量<span class="math notranslate nohighlight">\(x_k\)</span>与<span class="math notranslate nohighlight">\(x_{j_k}\)</span>的位置交换并记录自变量的排列顺序。直到消去法完成后，再按记录恢复自变量为自然次序。</p>
+<p>全主元消去法比列主元消元法的运算量大得多，且需要额外存储变量的顺序，而实际的运算过程中列主元消去法的舍入误差一般已经比较小，因此<font color="red">实际计算中多采用列主元法</font>。</p>
+</div>
+<div class="section" id="gauss-jordan-elimination">
+<h4>高斯-约旦消元法（Gauss-Jordan Elimination）<a class="headerlink" href="#gauss-jordan-elimination" title="Permalink to this headline">¶</a></h4>
+<p>我们考虑<span class="math notranslate nohighlight">\(Gauss\)</span>消元法的一种修正：消去对角线下方和上方的元素，并称这种方法为<font color="red"><span class="math notranslate nohighlight">\(Gauss-Jordan\)</span>消去法</font>。</p>
+<p>设用<span class="math notranslate nohighlight">\(Gauss-Jordan\)</span>消去法已经完成<span class="math notranslate nohighlight">\(k-1\)</span>步，得到与方程<span class="math notranslate nohighlight">\(Ax = b\)</span>等价的方程组<span class="math notranslate nohighlight">\(A^{(k)}  x = b^{(k)}\)</span>，此时对应的增广矩阵为
+\begin{equation*}
+\left( A^{(k)}, b^{(k)} \right) =
+\begin{bmatrix}
+1   &amp;        &amp;    &amp; a_{1k}^{k}     &amp; \cdots &amp;  b_1^{k}      &amp;  \
+&amp; \ddots &amp;    &amp; \vdots         &amp;        &amp;  \vdots       &amp;  \
+&amp;        &amp;  1 &amp; a_{k-1,k}^{k}  &amp; \cdots &amp;  b_{k-1}^{k}  &amp;  \
+&amp;        &amp;    &amp; a_{kk}^{k}     &amp; \cdots &amp;  b_{k}^{k}    &amp;  \
+&amp;        &amp;    &amp; \vdots         &amp;        &amp;  \vdots       &amp;  \
+&amp;        &amp;    &amp; a_{nk}^{k}     &amp; \cdots &amp;  b_{n}^{k}    &amp;  \
+\end{bmatrix}
+\end{equation*}</p>
+<p>在第<span class="math notranslate nohighlight">\(k\)</span>步计算时，考虑对上述矩阵的第<span class="math notranslate nohighlight">\(k\)</span>列中的第<span class="math notranslate nohighlight">\(k\)</span>行上下都进行消元计算。若用列主元消去法，仍然是第<span class="math notranslate nohighlight">\(k\)</span>列元素<span class="math notranslate nohighlight">\(a_{kk}^{k}\)</span>之下的所有元素中选一个绝对值最大的元素作为主元素，即
+\begin{equation*}
+\left| a_{i_k,k} \right|= \max_{k \leq i \leq n} \left| a_{i,k} \right|
+\end{equation*}
+但是，将第<span class="math notranslate nohighlight">\(k\)</span>行与第<span class="math notranslate nohighlight">\(i_k\)</span>行交换后，要通过主行将第<span class="math notranslate nohighlight">\(k\)</span>列的第<span class="math notranslate nohighlight">\(i\ (i=1,\cdots,k-1,k+1,\cdots,n)\)</span>个元素化为<span class="math notranslate nohighlight">\(0\)</span>，再将主行的对角线上元素化为<span class="math notranslate nohighlight">\(1\)</span>。最后得到<span class="math notranslate nohighlight">\(( A^{(k+1)}, b^{(k+1)} )\)</span>，这里<span class="math notranslate nohighlight">\(A^{(k+1)}\)</span>是单位矩阵，从而<span class="math notranslate nohighlight">\(b^{(k+1)}\)</span>就是计算解。</p>
+<p>可见，<span class="math notranslate nohighlight">\(Gauss-Jordan\)</span>消去法用不着回代求解，其计算量大约需要<span class="math notranslate nohighlight">\(n^3/2\)</span>次乘除法运算，要比<span class="math notranslate nohighlight">\(Gauss\)</span>消去法的计算量大。但是用<span class="math notranslate nohighlight">\(Gauss-Jordan\)</span>消去法求一个矩阵的逆矩阵是很合适的。</p>
+<p><strong>！例！</strong>： 用<span class="math notranslate nohighlight">\(Gauss-Jordan\)</span>消去法求下列矩阵的逆矩阵
+\begin{equation*}
+A = \begin{bmatrix}
+1 &amp; 2 &amp; 3 \
+2 &amp; 4 &amp; 5 \
+3 &amp; 5 &amp; 6 \
+\end{bmatrix}
+\end{equation*}</p>
+<p><strong>！解！</strong>：</p>
+<p>用<span class="math notranslate nohighlight">\(Gauss-Jordan\)</span>消元法有
+\begin{equation*}
+C = C^{(1)} = (A,I) = A = \begin{bmatrix}
+1 &amp; 2 &amp; 3 &amp; 1 &amp; 0 &amp; 0 \
+2 &amp; 4 &amp; 5 &amp; 0 &amp; 1 &amp; 0 \
+3 &amp; 5 &amp; 6 &amp; 0 &amp; 0 &amp; 1 \
+\end{bmatrix}
+\end{equation*}
+\begin{equation*}
+\Longrightarrow C^{(2)} = \begin{bmatrix}
+1 &amp; 5/3 &amp; 0 &amp; 0 &amp; 0 &amp; 1/3 \
+0 &amp; 2/3 &amp; 1 &amp; 0 &amp; 1 &amp; -2/3 \
+0 &amp; 1/3 &amp; 1 &amp; 1 &amp; 0 &amp; -1/3 \
+\end{bmatrix}
+\end{equation*}
+\begin{equation*}
+\Longrightarrow C^{(3)} = \begin{bmatrix}
+1 &amp; 0 &amp; -1/2 &amp; 0 &amp; -5/2 &amp;  2 \
+0 &amp; 1 &amp;  3/2 &amp; 0 &amp;  3/2 &amp; -1 \
+0 &amp; 0 &amp;  1/2 &amp; 1 &amp; -1/2 &amp;  0 \
+\end{bmatrix}
+\end{equation*}
+\begin{equation*}
+\Longrightarrow C^{(4)} = \begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp;  1 &amp; -3 &amp;  2 \
+0 &amp; 1 &amp; 0 &amp; -3 &amp;  3 &amp; -1 \
+0 &amp; 0 &amp; 1 &amp;  2 &amp; -1 &amp;  0 \
+\end{bmatrix}
+= (I, A^{-1})
+\end{equation*}
+故而有
+\begin{equation*}
+A^{-1} = \begin{bmatrix}
+1 &amp; -3 &amp;  2 \
+-3 &amp;  3 &amp; -1 \
+2 &amp; -1 &amp;  0 \
+\end{bmatrix}
+\end{equation*}</p>
+</div>
+<div class="section" id="python">
+<h4>消元法的python实现<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h4>
+<p>远期目标是，我们会有四个版本的消元法求解线性方程组。</p>
+<ul class="simple">
+<li><p>直接Gauss消元法</p></li>
+<li><p>列主元消元法</p></li>
+<li><p>全主元消元法</p></li>
+<li><p>Gauss-Jordan消元法</p></li>
+</ul>
+<p>但目前，受到时间精力限制，只能暂时从网上寻找一些开放的代码，以后时间精力允许的时候会补齐。</p>
+<p><font color="magenta"> 也非常欢迎学有余力的xiao huo ba </font></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myGauss</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="c1">#eliminate columns</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">col</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">)):</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="p">[(</span><span class="n">rowValue</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">/</span> <span class="n">m</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="n">col</span><span class="p">])))</span> <span class="k">for</span> <span class="n">rowValue</span> <span class="ow">in</span> <span class="n">m</span><span class="p">[</span><span class="n">col</span><span class="p">]]</span>
+            <span class="n">m</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">row</span><span class="p">],</span> <span class="n">r</span><span class="p">)]</span>
+    <span class="c1">#now backsolve by substitution</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">m</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span> <span class="c1">#makes it easier to backsolve</span>
+    <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">sol</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">sol</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">m</span><span class="p">[</span><span class="n">sol</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">inner</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="c1">#substitute in all known coefficients</span>
+                <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sol</span><span class="p">):</span>
+                    <span class="n">inner</span> <span class="o">+=</span> <span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">*</span><span class="n">m</span><span class="p">[</span><span class="n">sol</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="p">])</span>
+                <span class="c1">#the equation is now reduced to ax + b = c form</span>
+                <span class="c1">#solve with (c - b) / a</span>
+                <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">m</span><span class="p">[</span><span class="n">sol</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">inner</span><span class="p">)</span><span class="o">/</span><span class="n">m</span><span class="p">[</span><span class="n">sol</span><span class="p">][</span><span class="o">-</span><span class="n">sol</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">ans</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">myGauss</span><span class="p">([[</span><span class="o">-</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="o">-</span><span class="mf">6.0</span><span class="p">,</span><span class="mf">6.0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">7.0</span><span class="p">,</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">6.0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">8.0</span><span class="p">]])</span>
+     <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="n">myGauss</span><span class="p">([[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">6.0</span><span class="p">,</span><span class="mf">8.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">8.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">8.0</span><span class="p">,</span><span class="mf">9.0</span><span class="p">,</span><span class="mf">20.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">8.0</span><span class="p">,</span><span class="mf">9.0</span><span class="p">,</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">8.0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span><span class="o">-</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">0</span><span class="p">]]))</span> <span class="o">==</span> <span class="s1">&#39;[1.8835063437139565, 1.7012687427912341, -1.4160899653979238, -0.050749711649365627, -0.16695501730103807]&#39;</span>
+     <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;example from the wikipedia&#39;</span> <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="n">myGauss</span><span class="p">([[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">8.0</span><span class="p">],</span>
+               <span class="p">[</span><span class="o">-</span><span class="mf">3.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="o">-</span><span class="mf">11.0</span><span class="p">],</span>
+               <span class="p">[</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="o">-</span><span class="mf">3.0</span><span class="p">]])</span>
+     <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">myGauss</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">8.0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">7.0</span><span class="p">,</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">6.0</span><span class="p">],</span>
+               <span class="p">[</span><span class="o">-</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="o">-</span><span class="mf">6.0</span><span class="p">,</span><span class="mf">6.0</span><span class="p">]])</span>
+     <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2.0, 3.0, 1.0]
+False
+example from the wikipedia
+[2.0, 3.0, -1.0]
+[-2.0, 3.0, 0.9999999999999996]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="k">def</span> <span class="nf">gaussElimination</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="c1"># Elimination phase</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
+                <span class="c1">#if not null define λ</span>
+                <span class="n">lam</span> <span class="o">=</span> <span class="n">a</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
+                <span class="c1">#we calculate the new row of the matrix</span>
+                <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">lam</span><span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">]</span>
+                <span class="c1">#we update vector b</span>
+                <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">lam</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+                <span class="c1"># backward substitution</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">]))</span><span class="o">/</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">b</span>
+
+<span class="c1">#initial coefficients</span>
+<span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],[</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">],[</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">]])</span>
+<span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">5.0</span><span class="p">])</span>
+<span class="n">aOrig</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># save original matrix A</span>
+<span class="n">bOrig</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1">#save original vector b</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">gaussElimination</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="c1">#print A transformed for check</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x =</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="c1">#det = np.prod(np.diagonal(a)) #determinant</span>
+<span class="c1">#print(&quot;\ndet =&quot;,det)</span>
+<span class="c1">#check result and numerical precision</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Check result: [a]</span><span class="si">{x}</span><span class="s2"> - b =</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">aOrig</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">bOrig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.  1.  1.]
+ [ 1. -2. -2.]
+ [ 1. -3.  5.]]
+x =
+ [ 1.   1.2 -1.2]
+
+Check result: [a]{x} - b =
+ [2.22044605e-16 0.00000000e+00 0.00000000e+00]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">GEPP</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">doPricing</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Gaussian elimination with partial pivoting.</span>
+<span class="sd">    </span>
+<span class="sd">    input: A is an n x n numpy matrix</span>
+<span class="sd">           b is an n x 1 numpy array</span>
+<span class="sd">    output: x is the solution of Ax=b </span>
+<span class="sd">            with the entries permuted in </span>
+<span class="sd">            accordance with the pivoting </span>
+<span class="sd">            done by the algorithm</span>
+<span class="sd">    post-condition: A and b have been modified.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid argument: incompatible sizes between&quot;</span><span class="o">+</span>
+                         <span class="s2">&quot;A &amp; b.&quot;</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="c1"># k represents the current pivot row. Since GE traverses the matrix in the </span>
+    <span class="c1"># upper right triangle, we also use k for indicating the k-th diagonal </span>
+    <span class="c1"># column index.</span>
+    
+    <span class="c1"># Elimination</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">doPricing</span><span class="p">:</span>
+            <span class="c1"># Pivot</span>
+            <span class="n">maxindex</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">:,</span><span class="n">k</span><span class="p">])</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span> <span class="o">+</span> <span class="n">k</span>
+            <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">maxindex</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Matrix is singular.&quot;</span><span class="p">)</span>
+            <span class="c1"># Swap</span>
+            <span class="k">if</span> <span class="n">maxindex</span> <span class="o">!=</span> <span class="n">k</span><span class="p">:</span>
+                <span class="n">A</span><span class="p">[[</span><span class="n">k</span><span class="p">,</span><span class="n">maxindex</span><span class="p">]]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[[</span><span class="n">maxindex</span><span class="p">,</span> <span class="n">k</span><span class="p">]]</span>
+                <span class="n">b</span><span class="p">[[</span><span class="n">k</span><span class="p">,</span><span class="n">maxindex</span><span class="p">]]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[[</span><span class="n">maxindex</span><span class="p">,</span> <span class="n">k</span><span class="p">]]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Pivot element is zero. Try setting doPricing to True.&quot;</span><span class="p">)</span>
+        <span class="c1">#Eliminate</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">multiplier</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">k</span><span class="p">:]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">k</span><span class="p">:]</span> <span class="o">-</span> <span class="n">multiplier</span><span class="o">*</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">:]</span>
+            <span class="n">b</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">-</span> <span class="n">multiplier</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="c1"># Back Substitution</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:],</span><span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:]))</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="o">-</span><span class="mf">1.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="mf">4.</span><span class="p">,</span><span class="mf">8.</span><span class="p">]])</span>
+    <span class="n">b</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">14.</span><span class="p">],[</span><span class="mf">4.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">]])</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="n">GEPP</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">doPricing</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="n">GEPP</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 4. -5.  4. -1.]
+[ 4. -5.  4. -1.]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">GENP</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Gaussian elimination with no pivoting.</span>
+<span class="sd">    % input: A is an n x n nonsingular matrix</span>
+<span class="sd">    %        b is an n x 1 vector</span>
+<span class="sd">    % output: x is the solution of Ax=b.</span>
+<span class="sd">    % post-condition: A and b have been modified. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">n</span> <span class="o">=</span>  <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid argument: incompatible sizes between A &amp; b.&quot;</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">pivot_row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pivot_row</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">multiplier</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">pivot_row</span><span class="p">]</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">pivot_row</span><span class="p">][</span><span class="n">pivot_row</span><span class="p">]</span>
+            <span class="c1">#the only one in this column since the rest are zero</span>
+<span class="c1">#             A[row][pivot_row] = multiplier</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">pivot_row</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pivot_row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">-</span> <span class="n">multiplier</span><span class="o">*</span><span class="n">A</span><span class="p">[</span><span class="n">pivot_row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span>
+            <span class="c1">#Equation solution column</span>
+            <span class="n">b</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">-</span> <span class="n">multiplier</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="n">pivot_row</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:],</span><span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:]))</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="k">def</span> <span class="nf">GEPP</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Gaussian elimination with partial pivoting.</span>
+<span class="sd">    % input: A is an n x n nonsingular matrix</span>
+<span class="sd">    %        b is an n x 1 vector</span>
+<span class="sd">    % output: x is the solution of Ax=b.</span>
+<span class="sd">    % post-condition: A and b have been modified. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">n</span> <span class="o">=</span>  <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid argument: incompatible sizes between A &amp; b.&quot;</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="c1"># k represents the current pivot row. Since GE traverses the matrix in the upper </span>
+    <span class="c1"># right triangle, we also use k for indicating the k-th diagonal column index.</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1">#Choose largest pivot element below (and including) k</span>
+        <span class="n">maxindex</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">:,</span><span class="n">k</span><span class="p">])</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span> <span class="o">+</span> <span class="n">k</span>
+        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">maxindex</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Matrix is singular.&quot;</span><span class="p">)</span>
+        <span class="c1">#Swap rows</span>
+        <span class="k">if</span> <span class="n">maxindex</span> <span class="o">!=</span> <span class="n">k</span><span class="p">:</span>
+            <span class="n">A</span><span class="p">[[</span><span class="n">k</span><span class="p">,</span><span class="n">maxindex</span><span class="p">]]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[[</span><span class="n">maxindex</span><span class="p">,</span> <span class="n">k</span><span class="p">]]</span>
+            <span class="n">b</span><span class="p">[[</span><span class="n">k</span><span class="p">,</span><span class="n">maxindex</span><span class="p">]]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[[</span><span class="n">maxindex</span><span class="p">,</span> <span class="n">k</span><span class="p">]]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">multiplier</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">k</span><span class="p">]</span>
+            <span class="c1">#the only one in this column since the rest are zero</span>
+<span class="c1">#             A[row][k] = multiplier</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">-</span> <span class="n">multiplier</span><span class="o">*</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">col</span><span class="p">]</span>
+            <span class="c1">#Equation solution column</span>
+            <span class="n">b</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">-</span> <span class="n">multiplier</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:],</span><span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:]))</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="o">-</span><span class="mf">1.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="mf">4.</span><span class="p">,</span><span class="mf">8.</span><span class="p">]])</span>
+    <span class="n">b</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">14.</span><span class="p">],[</span><span class="mf">4.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">]])</span>
+<span class="c1">#     print( GEPP(np.copy(A), np.copy(b), doPricing = False) )</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="n">GEPP</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="n">GEPP</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1. -1.  1. -1.]
+ [ 0.  3.  3.  9.]
+ [ 0.  0. -2. -4.]
+ [ 0.  0.  0.  2.]]
+[[ 14.]
+ [-12.]
+ [ -4.]
+ [ -2.]]
+[ 4. -5.  4. -1.]
+[[ 1. -1.  1. -1.]
+ [ 0.  3.  3.  9.]
+ [ 0.  0. -2. -4.]
+ [ 0.  0.  0.  2.]]
+[[ 14.]
+ [-12.]
+ [ -4.]
+ [ -2.]]
+[ 4. -5.  4. -1.]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id17">
+<h3>矩阵分解法<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="gauss-elimination-as-matrix-decomposition">
+<h4>高斯消元法与矩阵分解（Gauss Elimination as Matrix Decomposition）<a class="headerlink" href="#gauss-elimination-as-matrix-decomposition" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="lu-lu-decomposition-of-matrices">
+<h4>矩阵的LU分解（LU decomposition of matrices）<a class="headerlink" href="#lu-lu-decomposition-of-matrices" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="lu">
+<h4>LU分解法解线性方程组<a class="headerlink" href="#lu" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="plu">
+<h4>矩阵的PLU分解<a class="headerlink" href="#plu" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id18">
+<h4>PLU分解法解线性方程组<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id19">
+<h4>对称矩阵及对称正定矩阵的分解<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id20">
+<h4>矩阵分解法的python实现<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="id21">
+<h3>迭代法求线性方程组<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id22">
+<h4>迭代法的基本构造方法<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id23">
+<h4>迭代法的收敛特性<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="gauss-seidel">
+<h4>Gauss-Seidel迭代<a class="headerlink" href="#gauss-seidel" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="jacobi">
+<h4>Jacobi迭代<a class="headerlink" href="#jacobi" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="sor">
+<h4>超松弛(SOR)迭代<a class="headerlink" href="#sor" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="section" id="id24">
+<h2>小结<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id25">
+<h2>思考和习题<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<p>本文档在编制过程中，得到了选修我主讲的《数值计算方法课程》的各班学生帮助，在此一并感谢并列举如下：</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="mc_numerics_ch01-Python-Basics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><center> 第01章: Python基础</center></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="mc_numerics_ch19-Roots-of-Nonlinear-Equations.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><center> 第19章: 非线性方程求根</center></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By The Jupyter Book Community<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

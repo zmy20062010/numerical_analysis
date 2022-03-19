@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数值计算方法 - Python实现 &#8212; My sample book</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第01章: Python基础" href="mc_numerics_ch01-Python-Basics.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">My sample book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <center>
+    数值计算方法 - Python实现
+   </center>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mc_numerics_ch01-Python-Basics.html">
+   <center>
+    第01章: Python基础
+   </center>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mc_numerics_ch14-Linear-System-of-Equations.html">
+   <center>
+    第14章: 线性方程组求解
+   </center>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mc_numerics_ch19-Roots-of-Nonlinear-Equations.html">
+   <center>
+    第19章: 非线性方程求根
+   </center>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/mc_numerics_ch00_index.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmc_numerics_ch00_index.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/mc_numerics_ch00_index.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   序言
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     课程目标
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     先修内容
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     内容组织
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     怎么阅读和学习本文档
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     为什么选择Python作为本课程的语言？
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pythonpackage">
+     Python和其中package的版本
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   致谢
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><center> 数值计算方法 - Python实现</center></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   序言
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     课程目标
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     先修内容
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     内容组织
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     怎么阅读和学习本文档
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     为什么选择Python作为本课程的语言？
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pythonpackage">
+     Python和其中package的版本
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   致谢
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="center-python-center">
+<h1><center> 数值计算方法 - Python实现</center><a class="headerlink" href="#center-python-center" title="Permalink to this headline">¶</a></h1>
+<center>（Numerical Computational Methods based on Python Language）</center><h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#序言" data-toc-modified-id="序言-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>序言</a></span><ul class="toc-item"><li><span><a href="#课程目标" data-toc-modified-id="课程目标-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>课程目标</a></span></li><li><span><a href="#先修内容" data-toc-modified-id="先修内容-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>先修内容</a></span></li><li><span><a href="#内容组织" data-toc-modified-id="内容组织-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>内容组织</a></span></li><li><span><a href="#怎么阅读和学习本文档" data-toc-modified-id="怎么阅读和学习本文档-1.4"><span class="toc-item-num">1.4&nbsp;&nbsp;</span>怎么阅读和学习本文档</a></span></li><li><span><a href="#为什么选择Python作为本课程的语言？" data-toc-modified-id="为什么选择Python作为本课程的语言？-1.5"><span class="toc-item-num">1.5&nbsp;&nbsp;</span>为什么选择Python作为本课程的语言？</a></span></li><li><span><a href="#Python和其中package的版本" data-toc-modified-id="Python和其中package的版本-1.6"><span class="toc-item-num">1.6&nbsp;&nbsp;</span>Python和其中package的版本</a></span></li></ul></li><li><span><a href="#致谢" data-toc-modified-id="致谢-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>致谢</a></span></li></ul></div><div class="section" id="id1">
+<h2>序言<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>本课程的文档都开源公布在一下网址：</p>
+<blockquote>
+<div><p><a class="reference external" href="https://gitee.com/zhoumaoying/numerical_analysis/tree/master/note-py">https://gitee.com/zhoumaoying/numerical_analysis/tree/master/note-py</a></p>
+</div></blockquote>
+<p>大家有两种方式对该课程的内容进行学习：</p>
+<ul class="simple">
+<li><p>直接在网页上选定对应章节的内容，在网页端打开。这种方式可能会使文档的格式有所变化，且无法执行文档中嵌入的代码。</p></li>
+<li><p>从网页上下载所有的.ipynb文件（注意要包含所有的文件夹的内容，本文中的图片都是利用相对路径方式添加）。这种方式能够自由修改文档（但请提前保存），而且能够实时执行文档中嵌入的代码，前提是正确在电脑上配置了python开发环境。</p></li>
+</ul>
+<div class="section" id="id2">
+<h3>课程目标<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>本文档主要配合针对本科生开设的《数值计算方法》课程。本文档的主要内容参考了开源文档<a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/Index.html">Python Programming and Numerical Methods - A Guide for Engineers and Scientists</a> （参见<a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/Index.html">Berkeley Python Numerical Methods</a> )目前阶段，本文档主要是该开源文档的中文翻译和简化，以适应本课程的学习。在未来的时间里，本文档的最终目标是能够完全自主化。</p>
+<p>本教程主要讲解利用python编程语言进行数值计算方法课程的教学，其目的有三：</p>
+<ul class="simple">
+<li><p>一是简单介绍python编程语言及其在工程实践和科学研究中的应用；</p></li>
+<li><p>二是结合python语言的特性更好地展现数值计算方法的内容；</p></li>
+<li><p>三是通过将程序编写、运行和结果可视化融入到数值计算方法的讲解中，更好地讲解计算机在数值计算中的应用。</p></li>
+</ul>
+<p>从心理上讲，本课程还有一个比较远大似乎不切实际的目标，就是希望能够带着同学们适应计算机化的工业时代，也就是熟悉利用计算机表达真实世界的各种方法，掌握运用计算机处理真实世界问题的各种途径，适应在工程中运用计算机工具从事各种工作。</p>
+</div>
+<div class="section" id="id3">
+<h3>先修内容<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>本文档的写作初衷是向无任何背景知识的同学介绍基于编程的数值计算方法。尽管如此，我们还是希望同学们在学习本课程的时候能够具备一些基本知识，包括</p>
+<ul class="simple">
+<li><p>基础的计算机编程操作，如命令行工具（command line tool），bash操作等</p></li>
+<li><p>基本的windows操作系统知识，如环境变量，文档结构等</p></li>
+<li><p>基本的线性代数</p></li>
+<li><p>微积分基础知识</p></li>
+</ul>
+<p>在未来的文档更新中，我们可能会更新一些基础知识的小短文。</p>
+</div>
+<div class="section" id="id4">
+<h3>内容组织<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>本文档总的来说分为两个部分：第一部分以python语言为例介绍了基本的编程概念；第二部分以python为载体介绍工程常用的数值计算方法。</p>
+<p>第一部分包括第01章到第13章，分别包含以下内容</p>
+<ul class="simple">
+<li><p>第01章：介绍Python语言和Jupyter Notebook，以便于后期文档的阅读，操作，以及日常作业的提交等</p></li>
+<li><p>第02章：Python中的变量和基本数据结构 （Variables and Data Structures）</p></li>
+<li><p>第03章：Python中函数的定义与使用（Function Definitions and Calls）</p></li>
+<li><p>第04章：Python中的逻辑操作与程序分支（Logic Operations and Program Branching）</p></li>
+<li><p>第05章：Python中的迭代（Iteration）</p></li>
+<li><p>第06章：Python中的递归（Recursion）</p></li>
+<li><p>第07章：Python中的面向对象编程（Object Oriented Programming， OOP）</p></li>
+<li><p>第08章：程序和算法的复杂度（Time and Space Complexity）</p></li>
+<li><p>第09章：数的计算机表示（Representation of Numbers）</p></li>
+<li><p>第10章：程序错误，编程规范与程序调试（Errors, Good Programming Practices, and Debugging）</p></li>
+<li><p>第11章：数据读写操作（I/O and Documents）</p></li>
+<li><p>第12章：可视化与数据做图（Visualization and Plotting）</p></li>
+<li><p>第13章：Python中程序的并行化（Parallelization）</p></li>
+</ul>
+<p>第二部分包括第14章到第25章，分别包含以下内容</p>
+<ul class="simple">
+<li><p>第14章：线性代数与线性方程组（Systems of Linear Equations）</p></li>
+<li><p>第15章：特征值与特征向量（Eigenvalues and Eigenvectors）</p></li>
+<li><p>第16章：逼近与插值（Approximations and Interpolation）</p></li>
+<li><p>第17章：逼近与最小二乘拟合（Approximations and Least-Square Fitting）</p></li>
+<li><p>第18章：级数（Series）</p></li>
+<li><p>第19章：非线性方程求解（Roots of Nonlinear Functions）</p></li>
+<li><p>第20章：数值微分(Numerical Differentiation)</p></li>
+<li><p>第21章：数值积分(Numerical Integration)</p></li>
+<li><p>第22章：常微分方程-初始值问题(Ordinary Differential Equations - Initial Value Problems)</p></li>
+<li><p>第23章：常微分方程-边界值问题(Ordinary Differential Equations - Boundary Value Problems</p></li>
+<li><p>第24章：傅立叶变换和谱方法（Fourier Transform and Spectral Method）</p></li>
+<li><p>第25章：机器学习简介（An Introduction to Machine Learning）</p></li>
+</ul>
+<p>注意到：理想而言，数值计算方法应该需要构成一个利用计算机语言解决工程问题的课程群：</p>
+<ul class="simple">
+<li><p>数学建模 (Mathematical Modeling in Engineering Applications)</p></li>
+<li><p>算法设计与分析 (Algorithm Design and Analysis)</p></li>
+<li><p>计算机编程 （Programming）</p></li>
+<li><p>数值计算与分析（有限精度计算，Finite Precision Computation）</p></li>
+<li><p>高性能计算 （High Perormance Computation: Parallelization; Large-Scale Computation）</p></li>
+<li><p>可视化（Visualization; Discretization; Computer Graphics）</p></li>
+</ul>
+<p>但是构建这么一个庞大的课程群并非易事，只能留到后面徐图之。</p>
+</div>
+<div class="section" id="id5">
+<h3>怎么阅读和学习本文档<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>这里其实分为两个部分：关于编程的部分和关于数值计算的部分。</p>
+<p>针对编程部分，最好的方法就是不断练习和熟悉。</p>
+<ol class="simple">
+<li><p>在浏览本文档的过程中，希望你能够借助Jupyter notebook 不断地联系文档中给出的各个示例。记住，读10遍文档不如按照文档敲代码1遍</p></li>
+<li><p>文档的内容还是需要配合教师的课堂讲解进行理解。希望大家能够相互比较借鉴，从而能够提高学习效率。</p></li>
+</ol>
+<p>针对数值计算方法部分，最好的办法是不断应用</p>
+<ol class="simple">
+<li><p>数值计算方法都需要针对特定的数学问题进行设计，这个一定要牢记</p></li>
+<li><p>本质上来说，数值计算方法的内容可以分为一下几个部分：数值线性代数、数值求根、数值近似、数值微分方程</p></li>
+<li><p>任何理论学习一定要结合具体问题进行分析。数值计算方法的发展是应工程问题解决过程中所需要了解的问题而产生的。所以我们一定要知道不同的方法的来龙去脉</p></li>
+<li><p>有机会的话，希望能够在日常的学习和工作过程中对数值计算方法进行应用</p></li>
+</ol>
+</div>
+<div class="section" id="python">
+<h3>为什么选择Python作为本课程的语言？<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<p>实际上，从最早的编程语言以来，大量的语言都可以用进行数值计算，简单列举如下：</p>
+<ul class="simple">
+<li><p>Fortran</p></li>
+<li><p>C/C++</p></li>
+<li><p>Matlab</p></li>
+<li><p>Python</p></li>
+<li><p>Julia</p></li>
+<li><p>Mathematica</p></li>
+<li><p>Maple</p></li>
+</ul>
+<p>这些语言各有特点。本课程采用python的主要理由是Jupyter Notebook的优良特性，以及在现代化过程中丰富的packages。</p>
+<p>从学习和应用的角度，不同语言之间的区别没那么大，主要是语法和编程方式的区别。因此希望大家以某一种语言作为主要载体，对其他语言大略了解其基本特征即可。</p>
+</div>
+<div class="section" id="pythonpackage">
+<h3>Python和其中package的版本<a class="headerlink" href="#pythonpackage" title="Permalink to this headline">¶</a></h3>
+<p>Python 版本：Python 3.9.10 (main, Jan 15 2022, 11:48:04)</p>
+<p>Python中所使用的主要package的版本：（pip3 list）</p>
+<ul class="simple">
+<li><p>jupyter - 4.9.2</p></li>
+<li><p>ipython - 8.1.0</p></li>
+<li><p>numpy - 1.16.4</p></li>
+<li><p>scipy - 1.8.0</p></li>
+<li><p>matplotlib - 3.5.1</p></li>
+<li><p>pandas - 1.3.5</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>致谢<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>本文档在编制过程中，得到了选修我主讲的《数值计算方法课程》的各班学生帮助，在此一并感谢并列举如下：</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Welcome to your Jupyter Book</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="mc_numerics_ch01-Python-Basics.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><center> 第01章: Python基础</center></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By The Jupyter Book Community<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

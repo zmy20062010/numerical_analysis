@@ -4,6 +4,10 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+- file: mc_numerics_ch00_index.ipynb
+- file: mc_numerics_ch01-Python-Basics.ipynb
+- file: mc_numerics_ch14-Linear-System-of-Equations.ipynb
+- file: mc_numerics_ch19-Roots-of-Nonlinear-Equations.ipynb
+- file: markdown.md
+- file: notebooks.ipynb
+- file: markdown-notebooks.md
